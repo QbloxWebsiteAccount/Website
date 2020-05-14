@@ -1,13 +1,13 @@
 // Components==============
 import { createGlobalStyle } from "styled-components";
-import woff500 from "../assets/fonts/raleway-v14-latin-500.woff";
-import woff2_500 from "../assets/fonts/raleway-v14-latin-500.woff2";
-import woff600 from "../assets/fonts/raleway-v14-latin-600.woff";
-import woff2_600 from "../assets/fonts/raleway-v14-latin-600.woff2";
-import woff700 from "../assets/fonts/raleway-v14-latin-700.woff";
-import woff2_700 from "../assets/fonts/raleway-v14-latin-700.woff2";
-import regular from "../assets/fonts/raleway-v14-latin-regular.woff";
-import regular2 from "../assets/fonts/raleway-v14-latin-regular.woff2";
+import woff500 from "../assets/fonts/montserrat-v14-latin-500.woff";
+import woff2_500 from "../assets/fonts/montserrat-v14-latin-500.woff2";
+import woff600 from "../assets/fonts/montserrat-v14-latin-600.woff";
+import woff2_600 from "../assets/fonts/montserrat-v14-latin-600.woff2";
+import woff700 from "../assets/fonts/montserrat-v14-latin-700.woff";
+import woff2_700 from "../assets/fonts/montserrat-v14-latin-700.woff2";
+import regular from "../assets/fonts/montserrat-v14-latin-regular.woff";
+import regular2 from "../assets/fonts/montserrat-v14-latin-regular.woff2";
 // =========================
 
 const GlobalStyles = createGlobalStyle`
@@ -17,11 +17,11 @@ const GlobalStyles = createGlobalStyle`
    /* =========================================*/
    
    html {
-      font-family: Raleway;
+      font-family: Montserrat;
       background-color: ${({ theme: { gray } }) => gray[1]};
 
       input, select, textarea, label{
-         font-family: Raleway;
+         font-family: Montserrat;
          font-size: 14px;
       }
    }
@@ -44,39 +44,39 @@ const GlobalStyles = createGlobalStyle`
    /* Font ====================================*/
    /* =========================================*/
 
-   /* raleway-regular - latin */
+   /* montserrat-regular - latin */
    @font-face {
-   font-family: 'Raleway';
+   font-family: 'Montserrat';
    font-style: normal;
    font-weight: 400;
-   src: local('Raleway'), local('Raleway-Regular'),
+   src: local('Montserrat'), local('Montserrat-Regular'),
          url('${regular2}') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
          url('${regular}') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
    }
-   /* raleway-500 - latin */
+   /* montserrat-500 - latin */
    @font-face {
-   font-family: 'Raleway';
+   font-family: 'Montserrat';
    font-style: normal;
    font-weight: 500;
-   src: local('Raleway Medium'), local('Raleway-Medium'),
+   src: local('Montserrat Medium'), local('Montserrat-Medium'),
          url('${woff2_500}') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
          url('${woff500}') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
    }
-   /* raleway-600 - latin */
+   /* montserrat-600 - latin */
    @font-face {
-   font-family: 'Raleway';
+   font-family: 'Montserrat';
    font-style: normal;
    font-weight: 600;
-   src: local('Raleway SemiBold'), local('Raleway-SemiBold'),
+   src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'),
          url('${woff2_600}') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
          url('${woff600}') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
    }
-   /* raleway-700 - latin */
+   /* montserrat-700 - latin */
    @font-face {
-   font-family: 'Raleway';
+   font-family: 'Montserrat';
    font-style: normal;
    font-weight: 700;
-   src: local('Raleway Bold'), local('Raleway-Bold'),
+   src: local('Montserrat Bold'), local('Montserrat-Bold'),
          url('${woff2_700}') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
          url('${woff700}') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
    }
