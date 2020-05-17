@@ -1,7 +1,7 @@
 // Components==============
 import { graphql, useStaticQuery } from "gatsby";
 import { useMediaQ } from "hooks-lib";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Container } from "../../style/Mixins";
 import BottomLinks from "./BottomLinks";
@@ -66,8 +66,6 @@ export default function Footer() {
     }
   `);
 
-  const changeOrder = useMediaQ("min", 1200);
-
   const { item1, item2, item3 } = FooterItems({
     items: data.sanityQBlox.footerContent,
   });
@@ -82,10 +80,18 @@ export default function Footer() {
     zoom: data.sanityQBlox.zoom,
   };
 
+  const [order, setOrder] = useState(null);
+
+  const changeOrder = useMediaQ("min", 1200);
+
+  useEffect(() => {
+    setOrder(changeOrder);
+  }, [setOrder, changeOrder]);
+
   return (
     <FooterWrap>
       <Container>
-        {changeOrder ? (
+        {order ? (
           <Grid>
             {item1}
             {item3}

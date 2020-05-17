@@ -21,9 +21,7 @@ const Image = styled(Img)`
 `;
 
 export default function SubMenuBurger({ children }) {
-  const { selected, setSelected } = useContext(SubMenuContext);
-
-  console.log(selected);
+  const { selected, setSelected, toggle } = useContext(SubMenuContext);
 
   const data = useStaticQuery(graphql`
     query subMenuQuery {
@@ -56,6 +54,7 @@ export default function SubMenuBurger({ children }) {
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         transition={{ delay: 0.3 }}
+        onClick={toggle}
       >
         <Flex to={`/${slug}`} last={last ? 1 : 0}>
           <Image fluid={image} alt={name} key={index} />

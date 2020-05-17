@@ -8,15 +8,15 @@
     "public": true,
     ".gitignore": true,
     "desktop.ini": true,
-    "gatsby-browser.js": true,
+    // "gatsby-browser.js": true,
     "gatsby-node.js": true,
-    "gatsby-config.js": true,
-    "gatsby-ssr.js": true,
+    // "gatsby-config.js": true,
+    // "gatsby-ssr.js": true,
     "package-lock.json": true,
-    // "package.json": true,
-    "page.js": true,
-    "jsconfig.json": true,
-    "root.js": true
+    "package.json": true,
+    // "page.js": true,
+    "jsconfig.json": true
+    // "root.js": true
   },
 
   "files.associations": {

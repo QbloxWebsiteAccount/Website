@@ -1,5 +1,6 @@
 // Components==============
 import { SubMenuContext } from "components-react-lib";
+import { useToggle } from "hooks-lib";
 import React, { useState } from "react";
 import { hot } from "react-hot-loader/root";
 import styled, { ThemeProvider } from "styled-components";
@@ -17,18 +18,19 @@ const Content = styled.div`
 
 function Layout({ children }) {
   const [selected, setSelected] = useState(null);
+  const [isToggled, , toggle] = useToggle(false);
 
-  const subMenuValue = { selected, setSelected };
+  const subMenuValue = { selected, setSelected, toggle, isToggled };
 
   return (
     <ThemeProvider theme={Variables}>
-      <IEWarning />
       <SubMenuContext.Provider value={subMenuValue}>
+        <IEWarning />
         <Nav />
+        <Content>{children}</Content>
+        <Footer />
+        <GlobalStyles />
       </SubMenuContext.Provider>
-      <Content>{children}</Content>
-      <Footer />
-      <GlobalStyles />
     </ThemeProvider>
   );
 }

@@ -6,7 +6,8 @@ import React from "react";
 import styled from "styled-components";
 import ItemWrapper from "./ItemWrapper";
 // =========================
-const ContactWrapper = styled.div`
+
+const Contact = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -32,7 +33,7 @@ const Flex = styled.div`
 export default function ContactItems({ content }) {
   return (
     <ItemWrapper>
-      <ContactWrapper>
+      <Contact>
         <strong>Contact</strong>
         <a href={`mailto:${content.email}`}>{content.email}</a>
         <a href={`tel:${content.phone}`}>{content.phone}</a>
@@ -53,7 +54,7 @@ export default function ContactItems({ content }) {
             <img src={instagram} alt="instagram" />
           </a>
         </Flex>
-      </ContactWrapper>
+      </Contact>
     </ItemWrapper>
   );
 }
