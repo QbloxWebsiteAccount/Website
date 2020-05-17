@@ -7,7 +7,7 @@ import styled from "styled-components";
 const Wrapper = styled.div``;
 
 export default function TextBlock({ content }) {
-  return <Wrapper></Wrapper>;
+  return <Wrapper>{content.text}</Wrapper>;
 }
 
 export const query = graphql`

@@ -5,6 +5,7 @@ const Overflow = styled.div`
   height: 100%;
   width: 100%;
   overflow: hidden;
+  min-height: 100vh;
 `;
 
 const root = ({ element, props }) => {

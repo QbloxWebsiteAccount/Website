@@ -55,7 +55,7 @@ export const Variables = {
     "30em",
     "48em",
   ],
-  borderRadius: "5px",
+  borderRadius: "2px",
   fontWeight: {
     normal: "400",
     semiBold: "500",
@@ -72,6 +72,10 @@ export const Variables = {
   fontSize: {
     xs: `
     font-size: 14px;
+
+    @media screen and (min-width: 768px) {
+     font-size: 15px; 
+    }
     `,
     s: `
     font-size: 15px;

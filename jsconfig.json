@@ -3,5 +3,10 @@
     "module": "commonjs",
     "target": "es6"
   },
-  "include": ["src/**/*", "node_modules/hooks-lib"]
+  "include": [
+    "src/**/*",
+    "node_modules/hooks-lib",
+    "node_modules/components-react-lib/dist"
+  ],
+  "exclude": ["node_modules/hooks-lib/dist", "node_modules/hooks-lib/src"]
 }
