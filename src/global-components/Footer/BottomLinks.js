@@ -1,6 +1,6 @@
 // Components==============
-import { useMediaQ } from "components-react-lib/node_modules/hooks-lib";
 import { Link } from "gatsby";
+import { useMediaQ } from "hooks-lib";
 import React from "react";
 import styled from "styled-components";
 // =========================
