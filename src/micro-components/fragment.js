@@ -2,6 +2,7 @@ import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment content on SanityPages {
+    _rawContent
     content {
       ... on SanityAdresBlock {
         ...adres

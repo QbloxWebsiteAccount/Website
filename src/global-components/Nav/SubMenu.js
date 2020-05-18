@@ -1,8 +1,9 @@
 // Components==============
+import { DropdownContext } from "components-react-lib";
 import { motion } from "framer-motion";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Container } from "../../style/Mixins";
 // =========================
@@ -44,13 +45,16 @@ export default function SubMenu() {
     }
   `);
 
+  const { toggle } = useContext(DropdownContext);
+
   const items = data.allSanitySeries.nodes.map((e, index) => {
     const name = e.name;
+    const slug = e.name.toLowerCase();
     const image = e.image.asset.fluid;
 
     return (
-      <motion.div key={index} whileHover={{ scale: 1.05 }}>
-        <Flex to={`/${name}`}>
+      <motion.div key={index} whileHover={{ scale: 1.05 }} onClick={toggle}>
+        <Flex to={`/${slug}`}>
           <Image fluid={image} alt={name} key={index} />
           <p> {name}</p>
         </Flex>

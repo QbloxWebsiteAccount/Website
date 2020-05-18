@@ -19,6 +19,7 @@ const Wrapper = styled.div`
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopM}) {
+    transform: translateX(35px);
     width: 200px;
   }
 `;

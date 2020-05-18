@@ -33,7 +33,7 @@ export default function NotFound() {
         path="404"
       />
       <Container404 style={{ marginTop: "2em" }}>
-        <h2>I could not found the page you where looking for...</h2>
+        <h2>I could not find the page you were looking for...</h2>
         {/* eslint-disable-next-line */}
         <Smiley>😟</Smiley>
       </Container404>

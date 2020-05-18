@@ -20,7 +20,7 @@ export default function Nav() {
 
   const Logo = () => {
     return (
-      <Link to="/">
+      <Link to="/" style={{ paddingBottom: 5 }}>
         <img src={data.sanityQBlox.logo.asset.url} alt="logo" />
       </Link>
     );

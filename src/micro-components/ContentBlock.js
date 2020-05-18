@@ -13,14 +13,38 @@ import TextBlock from "../block-components/TextBlock";
 import VideoBlock from "../block-components/VideoBlock";
 // =========================
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  padding-top: ${({ theme: { spacing }, noMargin }) =>
+    noMargin ? spacing[10] : spacing[14]};
 
-export default function ContentBlock({ content }) {
-  const contentBlock = content.map((e, index) => {
+  margin-bottom: ${({ theme: { spacing }, lastItem }) =>
+    lastItem ? spacing[12] : spacing[11]};
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopS}) {
+    margin-bottom: ${({ theme: { spacing }, lastItem }) =>
+      lastItem ? spacing[15] : spacing[13]};
+  }
+`;
+
+export default function ContentBlock({ content, rawContent, path }) {
+  const arrLength = content.length;
+
+  const combinedContent = content.map((e, index) => {
+    const raw = rawContent[index];
+    const combinedArr = { ...e, raw };
+
+    return combinedArr;
+  });
+
+  const contentBlock = combinedContent.map((e, index) => {
     const type = e.__typename;
+    const lastItem = index + 1 === arrLength;
+    const noMarginGroup = ["/"];
+    const noMargin = noMarginGroup.includes(path);
 
     return (
-      <Wrapper key={index}>
+      <Wrapper key={index} lastItem={lastItem} noMargin={noMargin}>
         {type === "SanityAdresBlock" && <AdresBlock content={e} />}
         {type === "SanityAffiliateBlock" && <AffiliateBlock content={e} />}
         {type === "SanityContactBlock" && <ContactBlock content={e} />}

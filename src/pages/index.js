@@ -5,7 +5,7 @@ import Head from "../global-components/Layout/Head";
 import ContentBlock from "../micro-components/ContentBlock";
 // =========================
 
-export default function Index({ data }) {
+export default function Index({ data, path }) {
   return (
     <>
       <Head
@@ -13,7 +13,11 @@ export default function Index({ data }) {
         description="Page description goes here"
         keywords="content"
       />
-      <ContentBlock content={data.sanityPages.content} />
+      <ContentBlock
+        content={data.sanityPages.content}
+        rawContent={data.sanityPages._rawContent}
+        path={path}
+      />
     </>
   );
 }

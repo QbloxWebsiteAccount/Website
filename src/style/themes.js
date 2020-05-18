@@ -106,31 +106,31 @@ export const Variables = {
     }
     `,
     h4: `
-    font-size: 22px;
-    
-    @media screen and (min-width: 768px) {
-     font-size: 25px; 
-    }
-    `,
-    h3: `
-    font-size: 24px;
+    font-size: 25px;
     
     @media screen and (min-width: 768px) {
      font-size: 28px; 
     }
     `,
-    h2: `
-    font-size: 26px;
+    h3: `
+    font-size: 29px;
     
     @media screen and (min-width: 768px) {
-     font-size: 35px; 
+     font-size: 33px; 
+    }
+    `,
+    h2: `
+    font-size: 31px;
+    
+    @media screen and (min-width: 768px) {
+     font-size: 41px; 
     }
     `,
     h1: `
-    font-size: 30px;
+    font-size: 33px;
     
     @media screen and (min-width: 768px) {
-     font-size: 45px; 
+     font-size: 50px; 
     }
     `,
   },

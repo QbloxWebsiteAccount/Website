@@ -36,7 +36,6 @@ export default function ContactItems({ content }) {
       <Contact>
         <strong>Contact</strong>
         <a href={`mailto:${content.email}`}>{content.email}</a>
-        <a href={`tel:${content.phone}`}>{content.phone}</a>
         <a href={content.skype} target="_blank" rel="noopener noreferrer">
           Skype
         </a>
