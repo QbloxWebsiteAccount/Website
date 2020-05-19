@@ -14,16 +14,16 @@ import VideoBlock from "../block-components/VideoBlock";
 // =========================
 
 const Wrapper = styled.div`
-  padding-top: ${({ theme: { spacing }, noMargin }) =>
-    noMargin ? spacing[10] : spacing[14]};
+  padding-top: ${({ theme: { spacing }, noMargin, index }) =>
+    noMargin ? spacing[10] : index === 0 ? spacing[14] : 0};
 
   margin-bottom: ${({ theme: { spacing }, lastItem }) =>
-    lastItem ? spacing[13] : spacing[11]};
+    lastItem ? spacing[14] : spacing[12]};
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
     margin-bottom: ${({ theme: { spacing }, lastItem }) =>
-      lastItem ? spacing[15] : spacing[14]};
+      lastItem ? spacing[16] : spacing[15]};
   }
 `;
 
@@ -37,7 +37,12 @@ export default function ContentBlock({ content, path }) {
     const noMargin = noMarginGroup.includes(path);
 
     return (
-      <Wrapper key={index} lastItem={lastItem} noMargin={noMargin}>
+      <Wrapper
+        key={index}
+        lastItem={lastItem}
+        noMargin={noMargin}
+        index={index}
+      >
         {type === "SanityAdresBlock" && <AdresBlock content={e} />}
         {type === "SanityAffiliateBlock" && <AffiliateBlock content={e} />}
         {type === "SanityContactBlock" && <ContactBlock content={e} />}
