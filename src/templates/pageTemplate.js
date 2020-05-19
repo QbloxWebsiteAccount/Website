@@ -5,13 +5,18 @@ import Head from "../global-components/Layout/Head";
 import ContentBlock from "../micro-components/ContentBlock";
 // =========================
 
-export default function Index({ data, path }) {
+export default function PageTemplate({ data, path }) {
+  const keywords = data.sanityPages.SEO ? data.sanityPages.SEO.keywords : "";
+  const description = data.sanityPages.SEO
+    ? data.sanityPages.SEO.description
+    : "";
+
   return (
     <>
       <Head
-        title="Home"
-        description="Page description goes here"
-        keywords="content"
+        title={data.sanityPages.page}
+        description={description}
+        keywords={keywords}
       />
       <ContentBlock content={data.sanityPages.content} path={path} />
     </>
@@ -22,6 +27,10 @@ export const query = graphql`
   query pageQuery($path: String!) {
     sanityPages(path: { eq: $path }) {
       ...content
+      SEO {
+        keywords
+        description
+      }
       page
     }
   }

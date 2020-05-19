@@ -15,7 +15,7 @@ exports.onCreatePage = ({ page, actions }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const pages = await graphql(`
+  const query = await graphql(`
     {
       allSanityPages {
         nodes {
@@ -26,20 +26,20 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  if (pages.errors) {
-    throw pages.errors;
+  if (query.errors) {
+    throw query.errors;
   }
 
-  const pages = pages.data.allSanityPages.nodes || [];
+  const pages = query.data.allSanityPages.nodes || [];
 
-  components.forEach((edge) => {
+  pages.forEach((edge) => {
     const page = edge.page;
     const path = edge.path;
 
     createPage({
       path,
-      component: require.resolve("./src/templates/SingletonComponents.js"),
-      context: { page, path },
+      component: require.resolve("./src/templates/pageTemplate.js"),
+      context: { page, sanityPath: path },
     });
   });
 };

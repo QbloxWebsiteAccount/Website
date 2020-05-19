@@ -17,6 +17,7 @@ const Container404 = styled(Container)`
   justify-content: center;
   align-items: center;
   height: 40vh;
+  padding-top: ${({ theme: { spacing } }) => spacing[15]};
 
   h2 {
     margin: ${({ theme: { spacing } }) => `${spacing[3]} 0`};
@@ -32,7 +33,7 @@ export default function NotFound() {
         keywords="404, unavailable, not found"
         path="404"
       />
-      <Container404 style={{ marginTop: "2em" }}>
+      <Container404>
         <h2>I could not find the page you were looking for...</h2>
         {/* eslint-disable-next-line */}
         <Smiley>😟</Smiley>
