@@ -6,6 +6,8 @@ import woff600 from "../assets/fonts/montserrat-v14-latin-600.woff";
 import woff2_600 from "../assets/fonts/montserrat-v14-latin-600.woff2";
 import woff700 from "../assets/fonts/montserrat-v14-latin-700.woff";
 import woff2_700 from "../assets/fonts/montserrat-v14-latin-700.woff2";
+import woff900 from "../assets/fonts/montserrat-v14-latin-900.woff";
+import woff2_900 from "../assets/fonts/montserrat-v14-latin-900.woff2";
 import regular from "../assets/fonts/montserrat-v14-latin-regular.woff";
 import regular2 from "../assets/fonts/montserrat-v14-latin-regular.woff2";
 // =========================
@@ -80,6 +82,15 @@ const GlobalStyles = createGlobalStyle`
          url('${woff2_700}') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
          url('${woff700}') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
    }
+   /* montserrat-900 - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Montserrat Black'), local('Montserrat-Black'),
+         url('${woff2_900}') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('${woff900}') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
 
    h1 {
       ${({ theme: { fontSize } }) => fontSize.h1}

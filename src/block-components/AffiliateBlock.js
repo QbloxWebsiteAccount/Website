@@ -2,21 +2,57 @@
 import { graphql } from "gatsby";
 import React from "react";
 import styled from "styled-components";
+import { Container } from "../style/Mixins";
 // =========================
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.tablet}) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: ${({ theme: { spacing } }) => spacing[8]};
+    align-items: center;
+  }
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopM}) {
+    display: flex;
+  }
+
+  img {
+    margin: 0 auto ${({ theme: { spacing } }) => spacing[9]};
+    max-width: 250px;
+
+    @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+        breakPoint.tablet}) {
+      margin: 0 auto;
+    }
+
+    @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+        breakPoint.desktopM}) {
+      max-width: 180px;
+    }
+  }
+`;
 
 export default function AffiliateBlock({ content }) {
-  return <Wrapper></Wrapper>;
+  const logos = content.companies.map((e, index) => {
+    return <img key={index} src={e.logo.asset.url} alt={e.name} />;
+  });
+
+  return (
+    <Container>
+      <Wrapper>{logos}</Wrapper>
+    </Container>
+  );
 }
 
 export const query = graphql`
   fragment affiliate on SanityAffiliateBlock {
     companies {
+      name
       logo {
         asset {
-          fluid(maxWidth: 1600) {
-            ...GatsbySanityImageFluid
-          }
+          url
         }
       }
     }

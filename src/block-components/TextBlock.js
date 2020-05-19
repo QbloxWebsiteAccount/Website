@@ -9,9 +9,9 @@ const Wrapper = styled.div`
   max-width: 850px;
   margin: 0 auto;
   ${({ theme: { fontSize } }) => fontSize.h3}
-  font-weight: ${({ theme: { fontWeight } }) => fontWeight.heavy};
+  font-weight: ${({ theme: { fontWeight } }) => fontWeight.wouter};
   text-align: center;
-  color: ${({ theme: { primary } }) => primary[5]};
+  color: ${({ theme: { primary } }) => primary[3]};
 `;
 
 export default function TextBlock({ content }) {

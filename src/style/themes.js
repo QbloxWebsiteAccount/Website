@@ -61,11 +61,12 @@ export const Variables = {
     semiBold: "500",
     bold: "600",
     heavy: "700",
+    wouter: "900",
   },
   breakPoint: {
     mobile: "400px",
     tablet: "768px",
-    desktopS: "900px",
+    desktopS: "950px",
     desktopM: "1200px",
     desktopL: "1600px",
   },
@@ -75,63 +76,84 @@ export const Variables = {
 
     @media screen and (min-width: 768px) {
      font-size: 15px; 
-    }
+    };
     `,
     s: `
     font-size: 15px;
     
     @media screen and (min-width: 768px) {
      font-size: 16px; 
-    }
+    };
     `,
     m: `
     font-size: 16px;
     
     @media screen and (min-width: 768px) {
      font-size: 17px; 
-    }
+    };
     `,
     l: `
     font-size: 17px;
     
     @media screen and (min-width: 768px) {
      font-size: 18px; 
-    }
+    };
     `,
     xl: `
     font-size: 19px;
     
     @media screen and (min-width: 768px) {
      font-size: 22px; 
-    }
+    };
     `,
     h4: `
     font-size: 25px;
     
     @media screen and (min-width: 768px) {
      font-size: 28px; 
-    }
+    };
     `,
     h3: `
     font-size: 29px;
     
     @media screen and (min-width: 768px) {
      font-size: 33px; 
-    }
+    };
     `,
     h2: `
     font-size: 31px;
     
     @media screen and (min-width: 768px) {
      font-size: 41px; 
-    }
+    };
     `,
     h1: `
     font-size: 33px;
     
     @media screen and (min-width: 768px) {
      font-size: 50px; 
-    }
+    };
+    `,
+    h0: `
+    line-height: 1.5;
+    font-size: 37.5px;
+    
+    @media screen and (min-width: 768px) {
+     font-size: 60px; 
+    };
+    `,
+    bigTitle: `
+  font-size: 70px;
+
+    @media screen and (min-width: 768px) {
+    font-size: 80px; 
+    };
+
+    
+    @media screen and (min-width: 1600px) {
+    font-size: 6vw;
+    };
+  
     `,
   },
 };

@@ -11,7 +11,7 @@ import Icon from "./Icon";
 // =========================
 
 const FooterWrap = styled.div`
-  background: ${({ theme: { primary } }) => primary[6]};
+  background: ${({ theme: { primary } }) => primary[5]};
   padding-top: ${({ theme: { spacing } }) => spacing[13]};
   clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0, 50% 4%);
 

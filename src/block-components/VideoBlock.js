@@ -34,18 +34,15 @@ const Shade = styled.div`
 
 const Title = styled.h1`
   color: white;
-  font-size: 90px;
   padding-top: ${({ theme: { spacing } }) => spacing[2]};
+  font-weight: ${({ theme: { fontWeight } }) => fontWeight.wouter};
+  ${({ theme: { fontSize } }) => fontSize.bigTitle}
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopS}) {
+    breakPoint.desktopS}) {
     padding-top: ${({ theme: { spacing } }) => spacing[6]};
   }
 
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopL}) {
-    font-size: 7vw;
-  }
 `;
 
 const SubTitle = styled.h3`

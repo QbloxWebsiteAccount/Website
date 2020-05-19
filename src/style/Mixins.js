@@ -22,6 +22,10 @@ export const BlockStyling = styled.div`
     line-height: 1.4;
   }
 
+  strong {
+    ${({ theme: { fontSize } }) => fontSize.l}
+  }
+
   blockquote::before {
     content: open-quote;
   }

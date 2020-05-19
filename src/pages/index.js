@@ -13,11 +13,7 @@ export default function Index({ data, path }) {
         description="Page description goes here"
         keywords="content"
       />
-      <ContentBlock
-        content={data.sanityPages.content}
-        rawContent={data.sanityPages._rawContent}
-        path={path}
-      />
+      <ContentBlock content={data.sanityPages.content} path={path} />
     </>
   );
 }

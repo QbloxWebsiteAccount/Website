@@ -18,26 +18,19 @@ const Wrapper = styled.div`
     noMargin ? spacing[10] : spacing[14]};
 
   margin-bottom: ${({ theme: { spacing }, lastItem }) =>
-    lastItem ? spacing[12] : spacing[11]};
+    lastItem ? spacing[13] : spacing[11]};
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
     margin-bottom: ${({ theme: { spacing }, lastItem }) =>
-      lastItem ? spacing[15] : spacing[13]};
+      lastItem ? spacing[15] : spacing[14]};
   }
 `;
 
-export default function ContentBlock({ content, rawContent, path }) {
+export default function ContentBlock({ content, path }) {
   const arrLength = content.length;
 
-  const combinedContent = content.map((e, index) => {
-    const raw = rawContent[index];
-    const combinedArr = { ...e, raw };
-
-    return combinedArr;
-  });
-
-  const contentBlock = combinedContent.map((e, index) => {
+  const contentBlock = content.map((e, index) => {
     const type = e.__typename;
     const lastItem = index + 1 === arrLength;
     const noMarginGroup = ["/"];

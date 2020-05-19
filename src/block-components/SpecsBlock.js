@@ -10,6 +10,8 @@ import { Container } from "../style/Mixins";
 const Wrapper = styled.div`
   h2 {
     margin-bottom: ${({ theme: { spacing } }) => spacing[5]};
+    font-weight: ${({ theme: { fontWeight } }) => fontWeight.wouter};
+    color: ${({ theme: { primary } }) => primary[3]};
   }
 `;
 
@@ -94,13 +96,13 @@ export default function SpecsBlock({ content }) {
             <>
               <Image fluid={image} alt={name} />
               <div>
-                <h2>{name}</h2>
+                <h2>{name} Specifications</h2>
                 <Grid>{specList}</Grid>
               </div>
             </>
           ) : (
             <>
-              <h2>{name}</h2>
+              <h2>{name} Specifications</h2>
               <Image fluid={image} alt={name} />
               <Grid>{specList}</Grid>
             </>
