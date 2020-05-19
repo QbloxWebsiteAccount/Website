@@ -70,10 +70,14 @@ const Grid = styled.div`
 `;
 
 export default function SpecsBlock({ content }) {
+  const breakpoint = useMediaQ("min", 1200);
+
+  if (!content.product) {
+    return <> </>;
+  }
+
   const name = content.product.name;
   const image = content.product.image.asset.fluid;
-
-  const breakpoint = useMediaQ("min", 1200);
 
   const specList = content.product.specs.map((e, index) => {
     const key = e.spec.name;

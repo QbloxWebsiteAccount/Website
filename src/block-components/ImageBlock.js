@@ -14,6 +14,10 @@ const Wrapper = styled.div`
 `;
 
 export default function ImageBlock({ content }) {
+  if (!content.image) {
+    return <> </>;
+  }
+
   return (
     <Container>
       <Wrapper>

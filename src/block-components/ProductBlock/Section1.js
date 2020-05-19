@@ -65,7 +65,9 @@ export default function S1({
         </BlockWrapper>
       </div>
       <ImageWrapper alignSwitch={alignSwitch}>
-        <ImageSvg className="image1" image={image1} svg={svg1} alt="alt" />
+        {image1 && (
+          <ImageSvg className="image1" image={image1} svg={svg1} alt="alt" />
+        )}
       </ImageWrapper>
     </Section1>
   );

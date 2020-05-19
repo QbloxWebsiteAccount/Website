@@ -30,12 +30,16 @@ const Message = styled.p`
 `;
 
 export default function FooterBlock({ content }) {
+  const message = content.message && content.message;
+  const slug = content.link && content.link.slug;
+  const text = content.link && content.link.text;
+
   return (
     <Container>
       <Wrapper>
-        <Message>{content.message}</Message>
-        <Link to={`/${content.link.slug}`}>
-          <UnderlineButton className="Btn">{content.link.text}</UnderlineButton>
+        <Message>{message}</Message>
+        <Link to={`/${slug}`}>
+          <UnderlineButton className="Btn">{text}</UnderlineButton>
         </Link>
       </Wrapper>
     </Container>

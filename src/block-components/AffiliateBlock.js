@@ -36,7 +36,10 @@ const Wrapper = styled.div`
 
 export default function AffiliateBlock({ content }) {
   const logos = content.companies.map((e, index) => {
-    return <img key={index} src={e.logo.asset.url} alt={e.name} />;
+    const logo = e.logo && e.logo.asset.url;
+    const name = e.name && e.name;
+
+    return <img key={index} src={logo} alt={name} />;
   });
 
   return (

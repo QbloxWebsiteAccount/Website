@@ -63,7 +63,7 @@ export default function offScreen({ title, image }) {
       <Container style={{ height: "100%" }}>
         <Content>
           <Title>{title}</Title>
-          <Image fluid={image} alt="alt" />
+          {image && <Image fluid={image} alt="alt" />}
         </Content>
       </Container>
     </Wrapper>

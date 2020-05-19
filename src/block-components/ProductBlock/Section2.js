@@ -86,7 +86,7 @@ export default function S2({
         <Block content={sellingPoints2} />
       </BlockWrapper>
       <SubSection alignSwitch={alignSwitch}>
-        <ImageSvg image={image2} svg={svg2} alt="alt" />
+        {image2 && <ImageSvg image={image2} svg={svg2} alt="alt" />}
         <SmallBlock>{smallTextBlock}</SmallBlock>
       </SubSection>
     </Section2>

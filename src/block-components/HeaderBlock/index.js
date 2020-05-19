@@ -6,15 +6,18 @@ import OffScreen from "./OffScreen";
 // =========================
 
 export default function HeaderBlock({ content }) {
-  console.log(content);
+  const type = content.type && content.type;
+  const title = content.title && content.title;
+  const image = content.image && content.image.asset.fluid;
+
   return (
     <>
-      {content.type === "fullWidth" ? (
-        <FullWidth title={content.title} image={content.image.asset.fluid} />
-      ) : content.type === "offScreen" ? (
-        <OffScreen title={content.title} image={content.image.asset.fluid} />
+      {type === "fullWidth" ? (
+        <FullWidth title={title} image={image} />
+      ) : type === "offScreen" ? (
+        <OffScreen title={title} image={image} />
       ) : (
-        <OffScreen title={content.title} image={content.image.asset.fluid} />
+        <OffScreen title={title} image={image} />
       )}
     </>
   );

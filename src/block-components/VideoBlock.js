@@ -37,12 +37,12 @@ const Title = styled.h1`
   padding-top: ${({ theme: { spacing } }) => spacing[2]};
   font-weight: ${({ theme: { fontWeight } }) => fontWeight.wouter};
   ${({ theme: { fontSize } }) => fontSize.bigTitle}
+  text-transform: uppercase;
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-    breakPoint.desktopS}) {
+      breakPoint.desktopS}) {
     padding-top: ${({ theme: { spacing } }) => spacing[6]};
   }
-
 `;
 
 const SubTitle = styled.h3`
@@ -59,6 +59,10 @@ const SubTitle = styled.h3`
 export default function VideoBlock({ content }) {
   const videoQuery = useMediaQ("min", 700);
 
+  const video = content.video && content.video.asset.url;
+  const title = content.title && content.title;
+  const subtitle = content.subtitle && content.subtitle;
+
   return (
     <Wrapper>
       <Video
@@ -70,15 +74,15 @@ export default function VideoBlock({ content }) {
         poster={content.placeholder ? content.placeholder.asset.url : ""}
       >
         {videoQuery ? (
-          <source src={content.video.asset.url} type="video/mp4" />
+          <source src={video} type="video/mp4" />
         ) : (
-          <source src={content.video.asset.url} type="video/mp4" />
+          <source src={video} type="video/mp4" />
         )}
       </Video>
       <Shade />
       <Container>
-        <Title>{content.title.toUpperCase()}</Title>
-        <SubTitle>{content.subtitle}</SubTitle>
+        <Title>{title}</Title>
+        <SubTitle>{subtitle}</SubTitle>
       </Container>
     </Wrapper>
   );

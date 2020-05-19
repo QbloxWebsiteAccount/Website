@@ -45,7 +45,7 @@ const Title = styled.h2`
 export default function FullWidth({ title, image }) {
   return (
     <Wrapper>
-      <Image fluid={image} alt="alt" />
+      {image && <Image fluid={image} alt="alt" />}
       <Content>
         <Container>
           <Title>{title}</Title>

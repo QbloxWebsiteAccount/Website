@@ -51,15 +51,19 @@ const BlockWrapper = styled(BlockStyling)`
 `;
 
 export default function ProductBlock({ content }) {
-  const title = content._rawProduct.title;
-  const image1 = content.product.image1.asset.fluid;
-  const svg1 = content.product.image1.asset.url;
-  const image2 = content.product.image2.asset.fluid;
-  const svg2 = content.product.image2.asset.url;
-  const sellingPoints1 = content._rawProduct.sellingPoints1;
-  const sellingPoints2 = content._rawProduct.sellingPoints2;
-  const smallTextBlock = content._rawProduct.smallTextBlock;
-  const alignSwitch = content._rawProduct.alignSwitch || false;
+  const title = content._rawProduct && content._rawProduct.title;
+  const image1 = content.product.image1 && content.product.image1.asset.fluid;
+  const svg1 = content.product.image1 && content.product.image1.asset.url;
+  const image2 = content.product.image2 && content.product.image2.asset.fluid;
+  const svg2 = content.product.image2 && content.product.image2.asset.url;
+  const sellingPoints1 =
+    content._rawProduct && content._rawProduct.sellingPoints1;
+  const sellingPoints2 =
+    content._rawProduct && content._rawProduct.sellingPoints2;
+  const smallTextBlock =
+    content._rawProduct && content._rawProduct.smallTextBlock;
+  const alignSwitch =
+    (content._rawProduct && content._rawProduct.alignSwitch) || false;
 
   return (
     <CustomContainer>
