@@ -28,60 +28,43 @@ const Title = styled.h3`
   font-weight: ${({ theme: { fontWeight } }) => fontWeight.wouter};
 `;
 
-const Info = styled.div`
-  margin-bottom: ${({ theme: { spacing } }) => spacing[6]};
-`;
-
-const Route = styled(BlockStyling)`
-  strong {
-    margin-bottom: ${({ theme: { spacing } }) => spacing[1]};
-    display: block;
-  }
-
-  p {
-    margin-bottom: 5px;
-  }
-`;
-
-const Flex = styled.div`
+const Grid = styled.div`
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: ${({ theme: { spacing } }) => spacing[6]};
   }
 `;
 
-export default function AdresBlock({ content }) {
+const BlockWrapper = styled(BlockStyling)`
+  max-width: 400px;
+`;
+
+export default function TextImageBlock({ content }) {
   const title = content.title && content.title;
-  const adresInfo = content.adresInfo && content.adresInfo._rawAdresInfo;
+  const text = content._rawText && content._rawText;
   const image = content.image && content.image.asset.fluid;
 
   return (
     <Container>
       <Wrapper>
         <Title>{title}</Title>
-        <Flex>
+        <Grid>
           {content.image && <Img fluid={image} />}
-          {content.adresInfo && (
-            <div>
-              <Info>
-                <p>{adresInfo.street}</p>
-                <p>{adresInfo.zipCity}</p>
-                <p>{adresInfo.land}</p>
-              </Info>
-              <Route>
-                <strong>Route descriptions</strong>
-                <Block content={adresInfo.routeDescription} />
-              </Route>
-            </div>
+          {content._rawText && (
+            <BlockWrapper>
+              <Block content={text} />
+            </BlockWrapper>
           )}
-        </Flex>
+        </Grid>
       </Wrapper>
     </Container>
   );
 }
 
 export const query = graphql`
-  fragment adres on SanityAdresBlock {
+  fragment textImage on SanityTextImageBlock {
     title
     image {
       asset {
@@ -90,8 +73,6 @@ export const query = graphql`
         }
       }
     }
-    adresInfo {
-      _rawAdresInfo
-    }
+    _rawText
   }
 `;

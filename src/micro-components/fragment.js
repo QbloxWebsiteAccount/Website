@@ -21,6 +21,9 @@ export const query = graphql`
       ... on SanityImageBlock {
         ...image
       }
+      ... on SanityMultiImageBlock {
+        ...multiImage
+      }
       ... on SanityProductBlock {
         ...product
       }
@@ -32,6 +35,9 @@ export const query = graphql`
       }
       ... on SanityVideoBlock {
         ...video
+      }
+      ... on SanityTextImageBlock {
+        ...textImage
       }
     }
   }

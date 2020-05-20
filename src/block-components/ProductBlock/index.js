@@ -2,7 +2,7 @@
 import { graphql } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { BlockStyling, Container } from "../../style/Mixins";
+import { Container } from "../../style/Mixins";
 import Section1 from "./Section1";
 import Section2 from "./Section2";
 // =========================
@@ -22,31 +22,23 @@ const CustomContainer = styled(Container)`
 const Wrapper = styled.div`
   margin: 0 auto;
 
-  h3 {
-    margin-bottom: ${({ theme: { spacing } }) => spacing[4]};
-    color: ${({ theme: { primary } }) => primary[3]};
-    max-width: 625px;
-    ${({ theme: { fontSize } }) => fontSize.h2}
-    font-weight: ${({ theme: { fontWeight } }) => fontWeight.wouter};
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopS}) {
+    display: grid;
+    grid-template-columns: repeat(2, 390px);
+    grid-column-gap: ${({ theme: { spacing } }) => spacing[10]};
+    grid-row-gap: ${({ theme: { spacing } }) => spacing[10]};
+    justify-content: space-around;
   }
-
-`;
-
-const BlockWrapper = styled(BlockStyling)`
-  max-width: 500px;
-  margin-bottom: ${({ theme: { spacing } }) => spacing[9]};
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopM}) {
-    max-width: 600px;
+    grid-template-columns: repeat(2, 475px);
   }
 
-  ul {
-    margin-left: 0;
-
-    li {
-      list-style: none;
-    }
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopL}) {
+    grid-template-columns: repeat(2, 550px);
   }
 `;
 
@@ -69,7 +61,6 @@ export default function ProductBlock({ content }) {
     <CustomContainer>
       <Wrapper>
         <Section1
-          BlockWrapper={BlockWrapper}
           sellingPoints1={sellingPoints1}
           alignSwitch={alignSwitch}
           image1={image1}
@@ -77,7 +68,6 @@ export default function ProductBlock({ content }) {
           title={title}
         />
         <Section2
-          BlockWrapper={BlockWrapper}
           sellingPoints2={sellingPoints2}
           alignSwitch={alignSwitch}
           image2={image2}
@@ -96,7 +86,7 @@ export const query = graphql`
     product {
       image1 {
         asset {
-          fluid(maxWidth: 600) {
+          fluid(maxWidth: 550) {
             ...GatsbySanityImageFluid
           }
           url
@@ -104,7 +94,7 @@ export const query = graphql`
       }
       image2 {
         asset {
-          fluid(maxWidth: 500) {
+          fluid(maxWidth: 550) {
             ...GatsbySanityImageFluid
           }
           url

@@ -7,9 +7,11 @@ import ContactBlock from "../block-components/ContactBlock";
 import FooterBlock from "../block-components/FooterBlock";
 import HeaderBlock from "../block-components/HeaderBlock";
 import ImageBlock from "../block-components/ImageBlock";
+import MultiImageBlock from "../block-components/MultiImageBlock";
 import ProductBlock from "../block-components/ProductBlock";
 import SpecsBlock from "../block-components/SpecsBlock";
 import TextBlock from "../block-components/TextBlock";
+import TextImageBlock from "../block-components/TextImageBlock";
 import VideoBlock from "../block-components/VideoBlock";
 // =========================
 
@@ -53,6 +55,8 @@ export default function ContentBlock({ content, path }) {
         {type === "SanitySpecsBlock" && <SpecsBlock content={e} />}
         {type === "SanityTextBlock" && <TextBlock content={e} />}
         {type === "SanityVideoBlock" && <VideoBlock content={e} />}
+        {type === "SanityMultiImageBlock" && <MultiImageBlock content={e} />}
+        {type === "SanityTextImageBlock" && <TextImageBlock content={e} />}
       </Wrapper>
     );
   });

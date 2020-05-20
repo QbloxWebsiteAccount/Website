@@ -3,73 +3,60 @@ import React from "react";
 import styled from "styled-components";
 import Block from "../../micro-components/Block";
 import ImageSvg from "../../micro-components/ImageSvg";
+import { BlockStyling } from "../../style/Mixins";
 
 // =========================
 
-const Section2 = styled.div`
+const BlockWrap = styled(BlockStyling)`
+  max-width: 600px;
+  margin-bottom: ${({ theme: { spacing } }) => spacing[8]};
+
+  ul {
+    margin-left: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  grid-column: ${({ alignSwitch }) => (!alignSwitch ? 1 : 2)};
+  grid-row: 2;
+
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    flex-direction: ${({ alignSwitch }) =>
-      !alignSwitch ? "initial" : "row-reverse"};
+    max-width: initial;
+    margin-bottom: 0;
   }
 `;
 
 const SubSection = styled.div`
   position: relative;
-  max-width: 450px;
-  height: 100%;
   width: 100%;
+  max-width: 500px;
 
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.mobile}) {
-    ${({ alignSwitch }) =>
-      alignSwitch ? `margin-right: auto;` : `margin-left: auto;`};
-  }
+  grid-column: ${({ alignSwitch }) => (alignSwitch ? 1 : 2)};
+  grid-row: 2;
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
-    ${({ alignSwitch, theme: { spacing } }) =>
-      alignSwitch
-        ? `margin-right: ${spacing[6]};`
-        : `margin-left: ${spacing[6]};`}
-  }
+    max-width: initial;
 
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopM}) {
-    ${({ alignSwitch }) =>
-      alignSwitch ? `margin-right: 0;` : `margin-left: 0;`};
+    .image2 {
+      height: 300px;
+    }
 
-    max-width: 480px;
-  }
-
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopL}) {
-    max-width: 500px;
+    img {
+      object-fit: contain !important;
+    }
   }
 `;
 
 const SmallBlock = styled.p`
-    position: absolute;
-    right: 0;
-    bottom: -3em;
     max-width: 250px;
     ${({ theme: { fontSize } }) => fontSize.xs}
     font-weight: ${({ theme: { fontWeight } }) => fontWeight.semiBold};
-
-      @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-        breakPoint.tablet}) {
-            right: -3em;
-            bottom: -3em;
-      }
-
-      @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-        breakPoint.desktopM}) {
-            bottom: -1em;
-        }
+    margin-left: auto;
+    
 `;
 
 export default function S2({
@@ -78,17 +65,18 @@ export default function S2({
   svg2,
   sellingPoints2,
   smallTextBlock,
-  BlockWrapper,
 }) {
   return (
-    <Section2 alignSwitch={alignSwitch}>
-      <BlockWrapper>
+    <>
+      <BlockWrap alignSwitch={alignSwitch}>
         <Block content={sellingPoints2} />
-      </BlockWrapper>
+      </BlockWrap>
       <SubSection alignSwitch={alignSwitch}>
-        {image2 && <ImageSvg image={image2} svg={svg2} alt="alt" />}
+        {image2 && (
+          <ImageSvg image={image2} svg={svg2} alt="alt" className="image2" />
+        )}
         <SmallBlock>{smallTextBlock}</SmallBlock>
       </SubSection>
-    </Section2>
+    </>
   );
 }

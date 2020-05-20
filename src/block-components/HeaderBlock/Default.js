@@ -32,14 +32,6 @@ const Image = styled(Img)`
   img {
     object-fit: contain !important;
   }
-
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopS}) {
-    width: 150%;
-    height: 150%;
-    right: -5vw;
-    bottom: 10vh;
-  }
 `;
 
 const Content = styled.div`
@@ -69,7 +61,7 @@ const Title = styled.h2`
   }
 `;
 
-export default function OffScreen({ title, image }) {
+export default function Default({ title, image }) {
   return (
     <Wrapper>
       <Container style={{ height: "100%" }}>
