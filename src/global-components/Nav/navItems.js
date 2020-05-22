@@ -12,14 +12,14 @@ const navItems = [
     content: (
       <DropdownButton
         button={<div className="hoverPointer">Products</div>}
-        menu={<SubMenu />}
+        menu={<SubMenu menu="products" />}
         menuPosition="90%"
         menuWidth="100%"
         menuIsFullWidth
         hover
       />
     ),
-    hamburgerContent: <SubMenuBurger>Products</SubMenuBurger>,
+    hamburgerContent: <SubMenuBurger menu="products">Products</SubMenuBurger>,
     link: "noLink",
   },
   {

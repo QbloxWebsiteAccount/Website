@@ -1,10 +1,11 @@
 // Components==============
 import { SubMenuContext } from "components-react-lib";
 import { motion } from "framer-motion";
-import { graphql, Link, useStaticQuery } from "gatsby";
-import React, { useContext } from "react";
+import { Link } from "gatsby";
+import Img from "gatsby-image";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import ImageSvg from "../../micro-components/ImageSvg";
+import { useProductNavItems } from "./subNavItems.js";
 // =========================
 
 const Flex = styled(Link)`
@@ -13,56 +14,37 @@ const Flex = styled(Link)`
     `${spacing[4]} ${spacing[4]} ${spacing[6]}`};
   align-items: center;
   margin-bottom: ${({ last }) => last === 1 && 0};
-
-  .img-svgBurger {
-    width: 70px;
-    margin-right: ${({ theme: { spacing } }) => spacing[5]};
-  }
-  .svgBurgerSub {
-    padding-right: ${({ theme: { spacing } }) => spacing[4]};
-    transform: translateX(0.5em);
-  }
 `;
 
-export default function SubMenuBurger({ children }) {
-  const { selected, setSelected, toggle } = useContext(SubMenuContext);
+const Image = styled(Img)`
+  width: 70px;
+  margin-right: ${({ theme: { spacing } }) => spacing[5]};
+`;
 
-  const data = useStaticQuery(graphql`
-    query subMenuQuery {
-      allSanityNavItems {
-        nodes {
-          name
-          image {
-            asset {
-              url
-              fluid(maxWidth: 200) {
-                ...GatsbySanityImageFluid
-              }
-            }
-          }
-          product {
-            name
-            image {
-              asset {
-                url
-                fluid(maxWidth: 200) {
-                  ...GatsbySanityImageFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
+const Svg = styled.img`
+  padding-right: ${({ theme: { spacing } }) => spacing[4]};
+  transform: translateX(0.5em);
+`;
 
-  const arrayLength = data.allSanityNavItems.nodes.length;
+export default function SubMenuBurger({ children, menu }) {
+  const { selected, setSelected, toggle, setNumberOfItems } = useContext(
+    SubMenuContext
+  );
 
-  const items = data.allSanityNavItems.nodes.map((e, index) => {
-    const name = e?.name || e?.product.name;
+  const products = useProductNavItems();
+  const subCondition = menu === "products" ? products : null;
+
+  const arrayLength = subCondition.length;
+
+  useEffect(() => {
+    setNumberOfItems(arrayLength);
+  }, [setNumberOfItems, arrayLength]);
+
+  const items = subCondition.map((e, index) => {
+    const name = e?.name;
     const slug = name?.toLowerCase();
-    const image = e.image?.asset.fluid || e?.product.image.asset.fluid;
-    const svg = e.image?.asset.url || e?.product.image.asset.url;
+    const image = e.image?.asset.fluid || e?.image;
+    const svg = e?.svg;
     const last = index === arrayLength - 1;
 
     return (
@@ -77,15 +59,8 @@ export default function SubMenuBurger({ children }) {
         }}
       >
         <Flex to={`/${slug}`} last={last ? 1 : 0}>
-          {image && (
-            <ImageSvg
-              svg={svg}
-              image={image}
-              alt={name}
-              className="img-svgBurger"
-              svgClassName="svgBurgerSub"
-            />
-          )}
+          {image && <Image fluid={image} alt={name} />}
+          {svg && <Svg src={svg} alt={name} />}
           <p> {name}</p>
         </Flex>
       </motion.div>
