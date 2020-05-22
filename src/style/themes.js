@@ -32,6 +32,19 @@ export const Variables = {
     l: "0 10px 20px rgba(0, 0, 0, 0.15), 0 5px 8px rgba(0, 0, 0, 0.03)",
     xl: "0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05)",
   },
+  gridColumn: `
+
+    grid-column-gap: 5vw;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    @media screen and (min-width: 1200px) {
+    };
+    
+    @media screen and (min-width: 1600px) {
+    grid-column-gap: 3vw;
+    };
+    `,
   spacing: [
     "0.25em",
     "0.5em",
@@ -122,6 +135,7 @@ export const Variables = {
     `,
     h2: `
     font-size: 31px;
+    line-height: 1.3;
     
     @media screen and (min-width: 768px) {
      font-size: 41px; 
@@ -129,6 +143,7 @@ export const Variables = {
     `,
     h1: `
     font-size: 33px;
+    line-height: 1.3;
     
     @media screen and (min-width: 768px) {
      font-size: 50px; 

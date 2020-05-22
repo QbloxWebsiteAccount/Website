@@ -24,7 +24,7 @@ const Image = styled(Img)`
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopM}) {
-    width: 20vw;
+    width: 16.5vw;
     max-width: 350px;
     margin: 0;
     transform: translateY(4vw);
@@ -69,7 +69,7 @@ const Grid = styled.div`
   }
 `;
 
-export default function SpecsBlock({ content }) {
+export default function SpecsBlock({ content, path }) {
   const breakpoint = useMediaQ("min", 1200);
 
   if (!content.product) {
@@ -100,13 +100,18 @@ export default function SpecsBlock({ content }) {
             <>
               <Image fluid={image} alt={name} />
               <div>
-                <h2>{name} Specifications</h2>
+                <h2>
+                  {name}{" "}
+                  {path === "/downloads" ? "Downloads" : "Specifications"}
+                </h2>
                 <Grid>{specList}</Grid>
               </div>
             </>
           ) : (
             <>
-              <h2>{name} Specifications</h2>
+              <h2>
+                {name} {path === "/downloads" ? "Downloads" : "Specifications"}
+              </h2>
               <Image fluid={image} alt={name} />
               <Grid>{specList}</Grid>
             </>
@@ -119,6 +124,7 @@ export default function SpecsBlock({ content }) {
 
 export const query = graphql`
   fragment specs on SanitySpecsBlock {
+    marginBottom
     product {
       name
       image {

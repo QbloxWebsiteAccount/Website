@@ -2,9 +2,9 @@
 import { SubMenuContext } from "components-react-lib";
 import { motion } from "framer-motion";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import Img from "gatsby-image";
 import React, { useContext } from "react";
 import styled from "styled-components";
+import ImageSvg from "../../micro-components/ImageSvg";
 // =========================
 
 const Flex = styled(Link)`
@@ -13,11 +13,15 @@ const Flex = styled(Link)`
     `${spacing[4]} ${spacing[4]} ${spacing[6]}`};
   align-items: center;
   margin-bottom: ${({ last }) => last === 1 && 0};
-`;
 
-const Image = styled(Img)`
-  width: 70px;
-  margin-right: ${({ theme: { spacing } }) => spacing[5]};
+  .img-svgBurger {
+    width: 70px;
+    margin-right: ${({ theme: { spacing } }) => spacing[5]};
+  }
+  .svgBurgerSub {
+    padding-right: ${({ theme: { spacing } }) => spacing[4]};
+    transform: translateX(0.5em);
+  }
 `;
 
 export default function SubMenuBurger({ children }) {
@@ -25,13 +29,25 @@ export default function SubMenuBurger({ children }) {
 
   const data = useStaticQuery(graphql`
     query subMenuQuery {
-      allSanitySeries {
+      allSanityNavItems {
         nodes {
           name
           image {
             asset {
+              url
               fluid(maxWidth: 200) {
                 ...GatsbySanityImageFluid
+              }
+            }
+          }
+          product {
+            name
+            image {
+              asset {
+                url
+                fluid(maxWidth: 200) {
+                  ...GatsbySanityImageFluid
+                }
               }
             }
           }
@@ -40,12 +56,13 @@ export default function SubMenuBurger({ children }) {
     }
   `);
 
-  const arrayLength = data.allSanitySeries.nodes.length;
+  const arrayLength = data.allSanityNavItems.nodes.length;
 
-  const items = data.allSanitySeries.nodes.map((e, index) => {
-    const name = e.name;
-    const image = e.image.asset.fluid;
-    const slug = e.name.toLowerCase();
+  const items = data.allSanityNavItems.nodes.map((e, index) => {
+    const name = e?.name || e?.product.name;
+    const slug = name?.toLowerCase();
+    const image = e.image?.asset.fluid || e?.product.image.asset.fluid;
+    const svg = e.image?.asset.url || e?.product.image.asset.url;
     const last = index === arrayLength - 1;
 
     return (
@@ -54,10 +71,21 @@ export default function SubMenuBurger({ children }) {
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         transition={{ delay: 0.3 }}
-        onClick={toggle}
+        onClick={() => {
+          toggle();
+          setSelected(null);
+        }}
       >
         <Flex to={`/${slug}`} last={last ? 1 : 0}>
-          <Image fluid={image} alt={name} key={index} />
+          {image && (
+            <ImageSvg
+              svg={svg}
+              image={image}
+              alt={name}
+              className="img-svgBurger"
+              svgClassName="svgBurgerSub"
+            />
+          )}
           <p> {name}</p>
         </Flex>
       </motion.div>

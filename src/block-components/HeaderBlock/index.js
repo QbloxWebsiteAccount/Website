@@ -10,7 +10,6 @@ export default function HeaderBlock({ content }) {
   const type = content.type && content.type;
   const title = content.title && content.title;
   const image = content.image && content.image.asset.fluid;
-  console.log(type);
 
   return (
     <>
@@ -27,6 +26,7 @@ export default function HeaderBlock({ content }) {
 
 export const query = graphql`
   fragment header on SanityHeaderBlock {
+    marginBottom
     title
     type
     image {

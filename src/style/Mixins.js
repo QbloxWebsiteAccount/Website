@@ -3,14 +3,22 @@ import styled from "styled-components";
 // Container
 
 export const Container = styled.div`
-  margin: 0 5%;
+  padding: 0 5%;
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
 
   @media screen and (min-width: 768px) {
-    margin: 0 6.5%;
+    padding: 0 6.5%;
   }
 
   @media screen and (min-width: 1200px) {
-    margin: 0 8%;
+    padding: 0 10%;
+  }
+
+  @media screen and (min-width: 1600px) {
+    padding: 0 12%;
+    max-width: 150rem;
   }
 `;
 
@@ -19,10 +27,12 @@ export const Container = styled.div`
 export const BlockStyling = styled.div`
   p {
     margin-bottom: ${({ theme: { spacing } }) => spacing[3]};
-    line-height: 1.4;
+    line-height: 1.7;
   }
 
   strong {
+    line-height: 1.6;
+    font-weight: ${({ theme: { fontWeight } }) => fontWeight.heavy};
     ${({ theme: { fontSize } }) => fontSize.l}
   }
 

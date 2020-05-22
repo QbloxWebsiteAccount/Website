@@ -7,39 +7,23 @@ import Section1 from "./Section1";
 import Section2 from "./Section2";
 // =========================
 
-const CustomContainer = styled(Container)`
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopM}) {
-    margin: 0 10%;
-  }
-
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopL}) {
-    margin: 0 13.5%;
-  }
-`;
-
 const Wrapper = styled.div`
+  position: relative;
   margin: 0 auto;
+  ${({ theme: { gridColumn } }) => gridColumn}
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopS}) {
+    breakPoint.desktopS}) {
     display: grid;
-    grid-template-columns: repeat(2, 390px);
-    grid-column-gap: ${({ theme: { spacing } }) => spacing[10]};
-    grid-row-gap: ${({ theme: { spacing } }) => spacing[10]};
+    grid-row-gap: ${({ theme: { spacing } }) => spacing[5]};
     justify-content: space-around;
   }
 
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopM}) {
-    grid-template-columns: repeat(2, 475px);
-  }
+  .singleBlockWrapper {
+  p {
+    margin-bottom: 0;
+  }}
 
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopL}) {
-    grid-template-columns: repeat(2, 550px);
-  }
 `;
 
 export default function ProductBlock({ content }) {
@@ -58,7 +42,7 @@ export default function ProductBlock({ content }) {
     (content._rawProduct && content._rawProduct.alignSwitch) || false;
 
   return (
-    <CustomContainer>
+    <Container>
       <Wrapper>
         <Section1
           sellingPoints1={sellingPoints1}
@@ -75,12 +59,13 @@ export default function ProductBlock({ content }) {
           smallTextBlock={smallTextBlock}
         />
       </Wrapper>
-    </CustomContainer>
+    </Container>
   );
 }
 
 export const query = graphql`
   fragment product on SanityProductBlock {
+    marginBottom
     _rawProduct
 
     product {

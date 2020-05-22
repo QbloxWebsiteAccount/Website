@@ -17,33 +17,60 @@ import VideoBlock from "../block-components/VideoBlock";
 
 const Wrapper = styled.div`
   padding-top: ${({ theme: { spacing }, noMargin, index }) =>
-    noMargin ? spacing[10] : index === 0 ? spacing[14] : 0};
+    noMargin && index === 0
+      ? spacing[10]
+      : !noMargin && index === 0
+      ? spacing[14]
+      : spacing[8]};
 
-  margin-bottom: ${({ theme: { spacing }, lastItem }) =>
-    lastItem ? spacing[14] : spacing[12]};
+  margin-bottom: ${({ theme: { spacing }, marginBottom, lastItem }) =>
+    lastItem ? spacing[13] : spacing[marginBottom]};
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
-    margin-bottom: ${({ theme: { spacing }, lastItem }) =>
-      lastItem ? spacing[16] : spacing[15]};
+    margin-bottom: ${({ theme: { spacing }, marginBottom, lastItem }) =>
+      lastItem ? spacing[15] : spacing[marginBottom + 2]};
+  }
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopL}) {
+    margin-bottom: ${({ theme: { spacing }, marginBottom, lastItem }) =>
+      lastItem ? spacing[16] : spacing[marginBottom + 3]};
   }
 `;
 
 export default function ContentBlock({ content, path }) {
+  const noMarginGroup = ["/"];
+  const noMargin = noMarginGroup.includes(path);
   const arrLength = content.length;
 
   const contentBlock = content.map((e, index) => {
     const type = e.__typename;
+    const mb = e.marginBottom || 4;
     const lastItem = index + 1 === arrLength;
-    const noMarginGroup = ["/"];
-    const noMargin = noMarginGroup.includes(path);
+
+    const condition =
+      mb === 1
+        ? 5
+        : mb === 2
+        ? 7
+        : mb === 3
+        ? 10
+        : mb === 4
+        ? 12
+        : mb === 5
+        ? 15
+        : mb === 6
+        ? 16
+        : 12;
 
     return (
       <Wrapper
         key={index}
-        lastItem={lastItem}
         noMargin={noMargin}
         index={index}
+        marginBottom={condition}
+        lastItem={lastItem}
       >
         {type === "SanityAdresBlock" && <AdresBlock content={e} />}
         {type === "SanityAffiliateBlock" && <AffiliateBlock content={e} />}
@@ -52,7 +79,7 @@ export default function ContentBlock({ content, path }) {
         {type === "SanityHeaderBlock" && <HeaderBlock content={e} />}
         {type === "SanityImageBlock" && <ImageBlock content={e} />}
         {type === "SanityProductBlock" && <ProductBlock content={e} />}
-        {type === "SanitySpecsBlock" && <SpecsBlock content={e} />}
+        {type === "SanitySpecsBlock" && <SpecsBlock content={e} path={path} />}
         {type === "SanityTextBlock" && <TextBlock content={e} />}
         {type === "SanityVideoBlock" && <VideoBlock content={e} />}
         {type === "SanityMultiImageBlock" && <MultiImageBlock content={e} />}

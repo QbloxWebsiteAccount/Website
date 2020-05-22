@@ -51,6 +51,7 @@ export default function AffiliateBlock({ content }) {
 
 export const query = graphql`
   fragment affiliate on SanityAffiliateBlock {
+    marginBottom
     companies {
       name
       logo {

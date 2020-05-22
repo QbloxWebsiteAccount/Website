@@ -24,6 +24,7 @@ export default function TextBlock({ content }) {
 
 export const query = graphql`
   fragment text on SanityTextBlock {
+    marginBottom
     text
   }
 `;

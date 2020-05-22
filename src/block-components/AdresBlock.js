@@ -12,12 +12,11 @@ const Wrapper = styled.div`
     margin-bottom: ${({ theme: { spacing } }) => spacing[7]};
 
     width: 100%;
-    max-width: 550px;
     margin-right: ${({ theme: { spacing } }) => spacing[12]};
 
     @media screen and (min-width: ${({ theme: { breakPoint } }) =>
         breakPoint.desktopS}) {
-      margin-bottom: 0;
+      margin: 0;
     }
   }
 `;
@@ -43,10 +42,13 @@ const Route = styled(BlockStyling)`
   }
 `;
 
-const Flex = styled.div`
+const Grid = styled.div`
+  justify-content: space-between;
+  ${({ theme: { gridColumn } }) => gridColumn}
+
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopS}) {
-    display: flex;
+    breakPoint.desktopS}) {
+        display: grid;
   }
 `;
 
@@ -59,7 +61,7 @@ export default function AdresBlock({ content }) {
     <Container>
       <Wrapper>
         <Title>{title}</Title>
-        <Flex>
+        <Grid>
           {content.image && <Img fluid={image} />}
           {content.adresInfo && (
             <div>
@@ -74,7 +76,7 @@ export default function AdresBlock({ content }) {
               </Route>
             </div>
           )}
-        </Flex>
+        </Grid>
       </Wrapper>
     </Container>
   );
@@ -82,6 +84,7 @@ export default function AdresBlock({ content }) {
 
 export const query = graphql`
   fragment adres on SanityAdresBlock {
+    marginBottom
     title
     image {
       asset {

@@ -13,7 +13,7 @@
     "gatsby-config.js": true,
     "gatsby-ssr.js": true,
     "package-lock.json": true,
-    "package.json": true,
+    // "package.json": true,
     "page.js": true,
     "jsconfig.json": true,
     "root.js": true

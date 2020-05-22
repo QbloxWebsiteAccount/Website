@@ -110,6 +110,7 @@ export default function ContactBlock({ content }) {
 
 export const query = graphql`
   fragment contact on SanityContactBlock {
+    marginBottom
     items {
       supportType
       mail

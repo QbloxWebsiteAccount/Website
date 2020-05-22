@@ -20,14 +20,18 @@ const Title = styled.h3`
 
       @media screen and (min-width: ${({ theme: { breakPoint } }) =>
         breakPoint.desktopS}) {
-          margin-bottom:  ${({ theme: { spacing } }) => spacing[6]}; 
+          margin-bottom:  ${({ theme: { spacing } }) => spacing[5]}; 
           max-width: initial;
+          text-align: ${({ alignSwitch }) =>
+            !alignSwitch ? "left" : "right"}; 
       }
 `;
 
 const BlockWrap = styled(BlockStyling)`
   max-width: 600px;
   margin-bottom: ${({ theme: { spacing } }) => spacing[8]};
+
+  text-align: ${({ alignSwitch }) => (!alignSwitch ? "left" : "right")};
 
   ul {
     margin-left: 0;
@@ -57,7 +61,8 @@ const ImageWrapper = styled.div`
     margin: 0;
 
     .image1 {
-      height: 600px;
+      height: ${({ ratio }) => (ratio < 1 ? "500px" : "450px")};
+      /* height: 500px; */
     }
 
     img {
@@ -73,15 +78,17 @@ export default function S1({
   svg1,
   title,
 }) {
+  const imageAspectRatio = image1.aspectRatio;
+
   return (
     <>
       <ContentWrapper alignSwitch={alignSwitch}>
-        <Title>{title}</Title>
-        <BlockWrap>
+        <Title alignSwitch={alignSwitch}>{title}</Title>
+        <BlockWrap alignSwitch={alignSwitch}>
           <Block content={sellingPoints1} />
         </BlockWrap>
       </ContentWrapper>
-      <ImageWrapper alignSwitch={alignSwitch}>
+      <ImageWrapper alignSwitch={alignSwitch} ratio={imageAspectRatio}>
         {image1 && (
           <ImageSvg className="image1" image={image1} svg={svg1} alt="alt" />
         )}
