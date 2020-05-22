@@ -16,10 +16,10 @@ import VideoBlock from "../block-components/VideoBlock";
 // =========================
 
 const Wrapper = styled.div`
-  padding-top: ${({ theme: { spacing }, noMargin, index }) =>
-    noMargin && index === 0
+  padding-top: ${({ theme: { spacing }, index, noPadding }) =>
+    noPadding && index === 0
       ? spacing[10]
-      : !noMargin && index === 0
+      : index === 0
       ? spacing[14]
       : spacing[8]};
 
@@ -40,8 +40,6 @@ const Wrapper = styled.div`
 `;
 
 export default function ContentBlock({ content, path }) {
-  const noMarginGroup = ["/"];
-  const noMargin = noMarginGroup.includes(path);
   const arrLength = content.length;
 
   const contentBlock = content.map((e, index) => {
@@ -67,10 +65,10 @@ export default function ContentBlock({ content, path }) {
     return (
       <Wrapper
         key={index}
-        noMargin={noMargin}
         index={index}
         marginBottom={condition}
         lastItem={lastItem}
+        noPadding={type === "SanityVideoBlock"}
       >
         {type === "SanityAdresBlock" && <AdresBlock content={e} />}
         {type === "SanityAffiliateBlock" && <AffiliateBlock content={e} />}
