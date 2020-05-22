@@ -24,8 +24,8 @@ export default function PageTemplate({ data, path }) {
 }
 
 export const query = graphql`
-  query pageQuery($path: String!) {
-    sanityPages(path: { eq: $path }) {
+  query pageQuery($page: String!) {
+    sanityPages(page: { eq: $page }) {
       ...content
       SEO {
         keywords

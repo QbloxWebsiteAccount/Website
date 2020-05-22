@@ -41,6 +41,14 @@ const BlockWrap = styled(BlockStyling)`
     }
   }
 
+  strong {
+    ${({ theme: { fontSize } }) => fontSize.l}
+  }
+
+  p {
+    ${({ theme: { fontSize } }) => fontSize.s}
+  }
+
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
     max-width: initial;

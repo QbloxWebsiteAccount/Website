@@ -60,8 +60,8 @@ const Flex = styled.div`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 0.3fr;
-  grid-column-gap: 2em;
+  grid-template-columns: 1fr 0.5fr;
+  grid-column-gap: 1.5em;
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopM}) {

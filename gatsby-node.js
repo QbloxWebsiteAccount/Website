@@ -20,7 +20,6 @@ exports.createPages = async ({ graphql, actions }) => {
       allSanityPages {
         nodes {
           page
-          path
         }
       }
     }
@@ -34,7 +33,8 @@ exports.createPages = async ({ graphql, actions }) => {
 
   pages.forEach((edge) => {
     const page = edge.page;
-    const path = edge.path;
+    const slug = page.toLowerCase();
+    const path = page === "Home" ? "/" : `/${slug}`;
 
     createPage({
       path,

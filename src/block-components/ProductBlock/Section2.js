@@ -19,6 +19,14 @@ const BlockWrap = styled(BlockStyling)`
     }
   }
 
+  strong {
+    ${({ theme: { fontSize } }) => fontSize.l}
+  }
+
+  p {
+    ${({ theme: { fontSize } }) => fontSize.s}
+  }
+
   grid-column: ${({ alignSwitch }) => (!alignSwitch ? 1 : 2)};
   grid-row: 2;
 

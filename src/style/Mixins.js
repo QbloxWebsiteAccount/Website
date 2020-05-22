@@ -13,12 +13,12 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1200px) {
-    padding: 0 10%;
+    padding: 0 12.5%;
   }
 
   @media screen and (min-width: 1600px) {
-    padding: 0 12%;
-    max-width: 150rem;
+    padding: 0 18%;
+    max-width: 130rem;
   }
 `;
 
