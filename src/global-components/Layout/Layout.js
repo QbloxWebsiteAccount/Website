@@ -1,4 +1,5 @@
 // Components==============
+import { motion } from "framer-motion";
 import React from "react";
 import { hot } from "react-hot-loader/root";
 import styled, { ThemeProvider } from "styled-components";
@@ -9,7 +10,7 @@ import Nav from "../Nav/Nav";
 import IEWarning from "./IE/IEWarning";
 // =========================
 
-const Content = styled.div`
+const Content = styled(motion.div)`
   min-height: 75vh;
 `;
 
@@ -18,7 +19,9 @@ function Layout({ children }) {
     <ThemeProvider theme={Variables}>
       <IEWarning />
       <Nav />
-      <Content>{children}</Content>
+      <Content animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
+        {children}
+      </Content>
       <Footer />
       <GlobalStyles />
     </ThemeProvider>
