@@ -1,13 +1,12 @@
 // Components==============
 import { graphql, useStaticQuery } from "gatsby";
-import { useMediaQ } from "hooks-lib";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Container } from "../../style/Mixins";
+import AdresItems from "./AdresItems";
 import BottomLinks from "./BottomLinks";
 import ContactItems from "./ContactItems";
 import FooterItems from "./FooterItems";
-import Icon from "./Icon";
 // =========================
 
 const FooterWrap = styled.div`
@@ -30,18 +29,25 @@ const FooterWrap = styled.div`
   }
 `;
 
-const Flex = styled.div`
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-`;
-
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-column-gap: 80px;
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.mobile}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopS}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopM}) {
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    margin-bottom: ${({ theme: { spacing } }) => spacing[8]};
+  }
 `;
 
 export default function Footer() {
@@ -55,6 +61,14 @@ export default function Footer() {
             text
           }
         }
+        Coc
+        VAT
+        name
+        adresInfo {
+          street
+          zipCity
+          land
+        }
         email
         instagram
         linkedIn
@@ -66,48 +80,14 @@ export default function Footer() {
     }
   `);
 
-  const { item1, item2, item3 } = FooterItems({
-    items: data.sanityQBlox.footerContent,
-  });
-
-  const contactContent = {
-    email: data.sanityQBlox.email,
-    instagram: data.sanityQBlox.instagram,
-    linkedIn: data.sanityQBlox.linkedIn,
-    phone: data.sanityQBlox.phone,
-    skype: data.sanityQBlox.skype,
-    twitter: data.sanityQBlox.twitter,
-    zoom: data.sanityQBlox.zoom,
-  };
-
-  const [order, setOrder] = useState(null);
-
-  const changeOrder = useMediaQ("min", 1200);
-
-  useEffect(() => {
-    setOrder(changeOrder);
-  }, [setOrder, changeOrder]);
-
   return (
     <FooterWrap>
       <Container>
-        {order ? (
-          <Grid>
-            {item1}
-            {item3}
-            <Icon />
-            {item2}
-            <ContactItems content={contactContent} />
-          </Grid>
-        ) : (
-          <Flex>
-            <ContactItems content={contactContent} />
-            {item3}
-            <Icon />
-            {item2}
-            {item1}
-          </Flex>
-        )}
+        <Grid>
+          <AdresItems data={data} />
+          <FooterItems items={data.sanityQBlox.footerContent} />
+          <ContactItems data={data} />
+        </Grid>
         <BottomLinks />
       </Container>
     </FooterWrap>

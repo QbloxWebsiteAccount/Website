@@ -38,7 +38,7 @@ export default function FooterBlock({ content }) {
     <Container>
       <Wrapper>
         <Message>{message}</Message>
-        <Link to={`/${slug}`}>
+        <Link to={slug}>
           <UnderlineButton className="Btn">{text}</UnderlineButton>
         </Link>
       </Wrapper>

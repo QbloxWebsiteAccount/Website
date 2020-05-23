@@ -10,14 +10,14 @@ const Smiley = styled.p`
   margin-top: ${({ theme: { spacing } }) => spacing[2]};
 `;
 
-const Container404 = styled(Container)`
+const Wrapper = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 40vh;
-  padding-top: ${({ theme: { spacing } }) => spacing[15]};
+  padding-top: ${({ theme: { spacing } }) => spacing[14]};
 
   h2 {
     margin: ${({ theme: { spacing } }) => `${spacing[3]} 0`};
@@ -33,11 +33,13 @@ export default function NotFound() {
         keywords="404, unavailable, not found"
         path="404"
       />
-      <Container404>
-        <h2>I could not find the page you were looking for...</h2>
-        {/* eslint-disable-next-line */}
-        <Smiley>😟</Smiley>
-      </Container404>
+      <Container>
+        <Wrapper>
+          <h2>I could not find the page you were looking for...</h2>
+          {/* eslint-disable-next-line */}
+          <Smiley>😟</Smiley>
+        </Wrapper>
+      </Container>
     </>
   );
 }

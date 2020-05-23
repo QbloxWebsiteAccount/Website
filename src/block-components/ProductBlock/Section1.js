@@ -42,7 +42,7 @@ const BlockWrap = styled(BlockStyling)`
   }
 
   strong {
-    ${({ theme: { fontSize } }) => fontSize.l}
+    ${({ theme: { fontSize } }) => fontSize.xl}
   }
 
   p {

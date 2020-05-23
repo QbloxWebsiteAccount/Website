@@ -26,6 +26,7 @@ const Wrapper = styled.div`
     ${({ theme: { fontSize } }) => fontSize.xs}
     margin-bottom: ${({ theme: { spacing } }) => spacing[4]};
     font-weight: ${({ theme: { fontWeight } }) => fontWeight.semiBold};
+    ${({ theme: { fontSize } }) => fontSize.xs}
 
       @media screen and (min-width: ${({ theme: { breakPoint } }) =>
         breakPoint.desktopM}) {

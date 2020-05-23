@@ -84,7 +84,7 @@ export default function ContactBlock({ content }) {
         </div>
         <Mail href={`mailto:${mail}`}>{mail}</Mail>
         <Text>{text}</Text>
-        <Download to={`/${linkSlug}`}>
+        <Download to={linkSlug}>
           <UnderlineButton>{linkText}</UnderlineButton>
         </Download>
         <Flex>

@@ -7,6 +7,13 @@ import styled from "styled-components";
 import ItemWrapper from "./ItemWrapper";
 // =========================
 
+const Wrapper = styled(ItemWrapper)`
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopM}) {
+    justify-self: end;
+  }
+`;
+
 const Contact = styled.div`
   display: flex;
   align-items: center;
@@ -14,7 +21,7 @@ const Contact = styled.div`
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopM}) {
-    align-items: start;
+    align-items: flex-start;
   }
 `;
 
@@ -30,9 +37,19 @@ const Flex = styled.div`
   }
 `;
 
-export default function ContactItems({ content }) {
+export default function ContactItems({ data }) {
+  const content = {
+    email: data.sanityQBlox.email,
+    instagram: data.sanityQBlox.instagram,
+    linkedIn: data.sanityQBlox.linkedIn,
+    phone: data.sanityQBlox.phone,
+    skype: data.sanityQBlox.skype,
+    twitter: data.sanityQBlox.twitter,
+    zoom: data.sanityQBlox.zoom,
+  };
+
   return (
-    <ItemWrapper>
+    <Wrapper>
       <Contact>
         <strong>Contact</strong>
         <a href={`mailto:${content.email}`}>{content.email}</a>
@@ -54,6 +71,6 @@ export default function ContactItems({ content }) {
           </a>
         </Flex>
       </Contact>
-    </ItemWrapper>
+    </Wrapper>
   );
 }
