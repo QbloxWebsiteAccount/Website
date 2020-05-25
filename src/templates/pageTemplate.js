@@ -1,8 +1,8 @@
 // Components==============
 import { graphql } from "gatsby";
 import React from "react";
+import ContentBlock from "../global-components/contentBlock/ContentBlock";
 import Head from "../global-components/Layout/Head";
-import ContentBlock from "../micro-components/ContentBlock";
 // =========================
 
 export default function PageTemplate({ data, path }) {

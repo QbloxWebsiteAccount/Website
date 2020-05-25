@@ -19,13 +19,15 @@ exports.createPages = async ({ graphql, actions }) => {
 
   pages.forEach((edge) => {
     const page = edge.page;
-    const slug = page.toLowerCase();
+    const slug = page.toLowerCase().replace(/\s/g, "");
     const path = page === "Home" ? "/" : `/${slug}`;
 
-    createPage({
-      path,
-      component: require.resolve("./src/templates/pageTemplate.js"),
-      context: { page, sanityPath: path },
-    });
+    if (slug !== "qbloxteam") {
+      createPage({
+        path,
+        component: require.resolve("./src/templates/pageTemplate.js"),
+        context: { page, sanityPath: path },
+      });
+    }
   });
 };

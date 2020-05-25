@@ -113,10 +113,10 @@ export const Variables = {
     };
     `,
     xl: `
-    font-size: 19px;
+    font-size: 20px;
     
     @media screen and (min-width: 768px) {
-     font-size: 20px; 
+     font-size: 21px; 
     };
     `,
     h4: `
@@ -151,10 +151,10 @@ export const Variables = {
     `,
     h0: `
     line-height: 1.4;
-    font-size: 37px;
+    font-size: 40px;
     
     @media screen and (min-width: 768px) {
-     font-size: 60px; 
+     font-size: 70px; 
     };
     `,
     bigTitle: `

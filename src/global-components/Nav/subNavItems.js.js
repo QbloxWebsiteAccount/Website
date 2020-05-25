@@ -27,3 +27,22 @@ export const useProductNavItems = () => {
 
   return items;
 };
+
+export const useAboutNavItems = () => {
+  const items = [
+    {
+      name: "Qblox Team",
+    },
+    {
+      name: "Advisory board",
+    },
+    {
+      name: "Vacancies",
+    },
+    {
+      name: "Affiliations",
+    },
+  ];
+
+  return items;
+};

@@ -36,6 +36,9 @@ export const query = graphql`
       ... on SanityLargeTextBlock {
         ...largeText
       }
+      ... on SanityTwoColumnTextBlock {
+        ...twoColumnText
+      }
       ... on SanityVideoBlock {
         ...video
       }

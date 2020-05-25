@@ -28,8 +28,18 @@ const navItems = [
     link: "news",
   },
   {
-    content: "About us",
-    link: "aboutus",
+    content: (
+      <DropdownButton
+        button={<div>About us</div>}
+        menu={<SubMenu menu="about" />}
+        menuPosition="90%"
+        menuWidth="100%"
+        menuIsFullWidth
+        hover
+      />
+    ),
+    hamburgerContent: <SubMenuBurger menu="about">About us</SubMenuBurger>,
+    link: "noLink",
   },
   {
     content: "Contact",

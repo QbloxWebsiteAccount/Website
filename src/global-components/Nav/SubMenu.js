@@ -6,7 +6,7 @@ import Img from "gatsby-image";
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Container } from "../../style/Mixins";
-import { useProductNavItems } from "./subNavItems.js";
+import { useAboutNavItems, useProductNavItems } from "./subNavItems.js";
 // =========================
 
 const Wrapper = styled.div`
@@ -37,12 +37,14 @@ export default function SubMenu({ menu }) {
   const { toggle } = useContext(DropdownContext);
 
   const products = useProductNavItems();
+  const about = useAboutNavItems();
 
-  const subCondition = menu === "products" ? products : null;
+  const subCondition =
+    menu === "products" ? products : menu === "about" ? about : null;
 
   const items = subCondition.map((e, index) => {
     const name = e?.name;
-    const slug = name?.toLowerCase();
+    const slug = name?.toLowerCase().replace(/\s/g, "");
     const image = e.image?.asset.fluid || e?.image;
     const svg = e?.svg;
 

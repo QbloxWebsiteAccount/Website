@@ -1,4 +1,5 @@
 // Components==============
+import { graphql } from "gatsby";
 import React from "react";
 import Block from "../micro-components/Block";
 import { BlockStyling, Container } from "../style/Mixins";
