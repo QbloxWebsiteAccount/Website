@@ -34,6 +34,7 @@ export default function ImageBlock({ content }) {
 export const query = graphql`
   fragment image on SanityImageBlock {
     marginBottom
+    animation
     image {
       asset {
         fluid(maxWidth: 1600) {

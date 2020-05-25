@@ -27,6 +27,7 @@ export default function HeaderBlock({ content }) {
 export const query = graphql`
   fragment header on SanityHeaderBlock {
     marginBottom
+    animation
     title
     type
     image {

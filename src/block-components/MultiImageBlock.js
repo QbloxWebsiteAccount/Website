@@ -44,6 +44,7 @@ export default function MultiImageBlock({ content }) {
 export const query = graphql`
   fragment multiImage on SanityMultiImageBlock {
     marginBottom
+    animation
     images {
       asset {
         fluid(maxWidth: 450) {

@@ -8,29 +8,21 @@ import { Container } from "../../style/Mixins";
 const Wrapper = styled.div`
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
-    position: relative;
-    width: 100vw;
     height: ${({ theme: { spacing } }) => `calc( 100vh - ${spacing[16]})`};
   }
 `;
 
-const ImageWrapper = styled.div`
+const Image = styled(Img)`
   width: 100%;
   height: 100%;
+  img {
+    object-fit: contain !important;
+  }
   max-width: 400px;
-  margin: 0 auto;
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
     max-width: initial;
-    margin: 0;
-  }
-`;
-
-const Image = styled(Img)`
-  height: 100%;
-  img {
-    object-fit: contain !important;
   }
 `;
 
@@ -40,8 +32,9 @@ const Content = styled.div`
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
-    display: flex;
-    align-items: center;
+    display: Grid;
+    grid-template-columns: 1fr 0.7fr;
+    grid-column-gap: ${({ theme: { spacing } }) => spacing[10]};
   }
 `;
 
@@ -56,7 +49,6 @@ const Title = styled.h2`
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
     text-align: right;
-    margin-right: ${({ theme: { spacing } }) => spacing[4]};
     margin-bottom: 0;
   }
 `;
@@ -67,9 +59,7 @@ export default function Default({ title, image }) {
       <Container style={{ height: "100%" }}>
         <Content>
           <Title>{title}</Title>
-          <ImageWrapper>
-            {image && <Image fluid={image} alt="alt" />}
-          </ImageWrapper>
+          {image && <Image fluid={image} alt="alt" />}
         </Content>
       </Container>
     </Wrapper>

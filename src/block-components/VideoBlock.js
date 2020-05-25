@@ -91,6 +91,7 @@ export default function VideoBlock({ content }) {
 export const query = graphql`
   fragment video on SanityVideoBlock {
     marginBottom
+    animation
     title
     subtitle
     video {

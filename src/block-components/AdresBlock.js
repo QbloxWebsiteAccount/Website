@@ -85,6 +85,7 @@ export default function AdresBlock({ content }) {
 export const query = graphql`
   fragment adres on SanityAdresBlock {
     marginBottom
+    animation
     title
     image {
       asset {

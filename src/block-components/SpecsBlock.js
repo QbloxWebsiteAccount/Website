@@ -125,6 +125,7 @@ export default function SpecsBlock({ content, path }) {
 export const query = graphql`
   fragment specs on SanitySpecsBlock {
     marginBottom
+    animation
     product {
       name
       image {

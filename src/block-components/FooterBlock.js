@@ -49,6 +49,7 @@ export default function FooterBlock({ content }) {
 export const query = graphql`
   fragment footer on SanityFooterBlock {
     marginBottom
+    animation
     message
     link {
       slug

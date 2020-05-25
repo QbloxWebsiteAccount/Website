@@ -66,6 +66,7 @@ export default function ProductBlock({ content }) {
 export const query = graphql`
   fragment product on SanityProductBlock {
     marginBottom
+    animation
     _rawProduct
 
     product {

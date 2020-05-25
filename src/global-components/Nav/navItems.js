@@ -1,4 +1,5 @@
 import { DropdownButton } from "components-react-lib";
+import { Link } from "gatsby";
 import React from "react";
 import SubMenu from "./SubMenu";
 import SubMenuBurger from "./SubMenuBurger";
@@ -11,7 +12,7 @@ const navItems = [
   {
     content: (
       <DropdownButton
-        button={<div className="hoverPointer">Products</div>}
+        button={<Link to="/products">Products</Link>}
         menu={<SubMenu menu="products" />}
         menuPosition="90%"
         menuWidth="100%"

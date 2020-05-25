@@ -150,8 +150,8 @@ export const Variables = {
     };
     `,
     h0: `
-    line-height: 1.5;
-    font-size: 37.5px;
+    line-height: 1.4;
+    font-size: 37px;
     
     @media screen and (min-width: 768px) {
      font-size: 60px; 

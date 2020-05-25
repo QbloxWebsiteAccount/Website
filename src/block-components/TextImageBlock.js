@@ -66,6 +66,7 @@ export default function TextImageBlock({ content }) {
 export const query = graphql`
   fragment textImage on SanityTextImageBlock {
     marginBottom
+    animation
     title
     image {
       asset {

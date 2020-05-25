@@ -50,9 +50,7 @@ export default function SubMenuBurger({ children, menu }) {
     return (
       <motion.div
         key={index}
-        animate={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
-        transition={{ delay: 0.3 }}
+        variants={framerItems}
         onClick={() => {
           toggle();
           setSelected(null);
@@ -78,7 +76,30 @@ export default function SubMenuBurger({ children, menu }) {
       >
         {children}
       </button>
-      {selected === children && items}
+      {selected === children && (
+        <motion.div animate="mounted" initial="unMounted" variants={framerWrap}>
+          {items}
+        </motion.div>
+      )}
     </>
   );
 }
+
+const framerWrap = {
+  mounted: {
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.1,
+    },
+  },
+  unMounted: {},
+};
+
+const framerItems = {
+  mounted: {
+    opacity: 1,
+  },
+  unMounted: {
+    opacity: 0,
+  },
+};
