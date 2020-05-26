@@ -22,7 +22,16 @@ exports.createPages = async ({ graphql, actions }) => {
     const slug = page.toLowerCase().replace(/\s/g, "");
     const path = page === "Home" ? "/" : `/${slug}`;
 
-    if (slug !== "qbloxteam") {
+    const exclude = [
+      "qbloxteam",
+      "affiliations",
+      "vacancies",
+      "downloads",
+      "news",
+      "scientificarticles",
+    ];
+
+    if (!exclude.includes(slug)) {
       createPage({
         path,
         component: require.resolve("./src/templates/pageTemplate.js"),

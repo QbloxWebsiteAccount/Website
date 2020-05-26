@@ -6,14 +6,18 @@ import Img from "gatsby-image";
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Container } from "../../style/Mixins";
-import { useAboutNavItems, useProductNavItems } from "./subNavItems.js";
+import {
+  useAboutNavItems,
+  useNewsNavItems,
+  useProductNavItems,
+} from "./subNavItems.js";
 // =========================
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 900px;
+  max-width: ${({ arrLength }) => (arrLength > 3 ? "900px" : "400px")};
   margin: 0 auto;
   padding: ${({ theme: { spacing } }) => spacing[5]} 0;
 `;
@@ -38,9 +42,18 @@ export default function SubMenu({ menu }) {
 
   const products = useProductNavItems();
   const about = useAboutNavItems();
+  const news = useNewsNavItems();
 
   const subCondition =
-    menu === "products" ? products : menu === "about" ? about : null;
+    menu === "products"
+      ? products
+      : menu === "about"
+      ? about
+      : menu === "news"
+      ? news
+      : null;
+
+  const arrLength = subCondition.length;
 
   const items = subCondition.map((e, index) => {
     const name = e?.name;
@@ -50,7 +63,11 @@ export default function SubMenu({ menu }) {
 
     return (
       <motion.div key={index} whileHover={{ scale: 1.05 }} onClick={toggle}>
-        <Flex to={`/${slug}`}>
+        <Flex
+          to={
+            name === "Advisory board" ? "/qbloxteam#advisoryBoard" : `/${slug}`
+          }
+        >
           {image && <Image fluid={image} alt={name} />}
           {svg && <Svg src={svg} alt={name} />}
           <p> {name}</p>
@@ -62,7 +79,7 @@ export default function SubMenu({ menu }) {
   return (
     <>
       <Container>
-        <Wrapper> {items} </Wrapper>
+        <Wrapper arrLength={arrLength}> {items} </Wrapper>
       </Container>
     </>
   );

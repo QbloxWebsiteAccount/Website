@@ -46,3 +46,16 @@ export const useAboutNavItems = () => {
 
   return items;
 };
+
+export const useNewsNavItems = () => {
+  const items = [
+    {
+      name: "scientific articles",
+    },
+    {
+      name: "news",
+    },
+  ];
+
+  return items;
+};

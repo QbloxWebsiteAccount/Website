@@ -4,28 +4,20 @@ import React from "react";
 import styled from "styled-components";
 import ContentBlock from "../global-components/contentBlock/ContentBlock";
 import Head from "../global-components/Layout/Head";
-import Advisory from "../macro-team/Advisory";
-import Grid from "../macro-team/Grid";
-import { Container } from "../style/Mixins";
+import Item from "../macro-vacancies/Item";
 // =========================
 
 const Wrapper = styled.div`
   padding-bottom: ${({ theme: { spacing } }) => spacing[6]};
 `;
 
-const Pointer = styled.div`
-  position: absolute;
-  top: -300px;
-`;
-
-export default function QbloxTeam({ data, path }) {
+export default function Vacancies({ data, path }) {
   const keywords = data.sanityPages.SEO ? data.sanityPages.SEO.keywords : "";
   const description = data.sanityPages.SEO
     ? data.sanityPages.SEO.description
     : "";
 
-  const employees = data.allSanityEmployees.nodes;
-  const advisoryBoard = data.allSanityAdvisoryBoard.nodes;
+  const vacancies = data.allSanityVacancies.nodes;
 
   return (
     <>
@@ -45,29 +37,24 @@ export default function QbloxTeam({ data, path }) {
           path={path}
           block={1}
         />
-        <Container>
-          <Grid employees={employees} />
-        </Container>
-
-        <ContentBlock
-          content={data.sanityPages.content}
-          path={path}
-          block={2}
-        />
-        <Container style={{ position: "relative" }}>
-          <Pointer id="advisoryBoard" />
-          <Advisory content={advisoryBoard} />
-        </Container>
-
+        <Item content={vacancies.filter((e) => !e.internship && e)} />
+        {vacancies.map(
+          (e) =>
+            e.internship && (
+              <>
+                <ContentBlock
+                  content={data.sanityPages.content}
+                  path={path}
+                  block={2}
+                />
+                <Item content={vacancies.filter((e) => e.internship && e)} />
+              </>
+            )
+        )}
         <ContentBlock
           content={data.sanityPages.content}
           path={path}
           block={3}
-        />
-        <ContentBlock
-          content={data.sanityPages.content}
-          path={path}
-          block={4}
         />
       </Wrapper>
     </>
@@ -75,8 +62,8 @@ export default function QbloxTeam({ data, path }) {
 }
 
 export const query = graphql`
-  query TeamQuery {
-    sanityPages(page: { eq: "Qblox team" }) {
+  query VacanciesQuery {
+    sanityPages(page: { eq: "Vacancies" }) {
       ...content
       SEO {
         keywords
@@ -84,35 +71,24 @@ export const query = graphql`
       }
       page
     }
-    allSanityEmployees {
+    allSanityVacancies {
       nodes {
-        name
-        job
+        title
         image {
+          asset {
+            fluid(maxWidth: 500) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        subtitle
+        date(formatString: "DD MMMM YYYY")
+        document {
           asset {
             url
-            fluid(maxWidth: 500) {
-              ...GatsbySanityImageFluid
-            }
           }
         }
-        team
-      }
-    }
-    allSanityAdvisoryBoard {
-      nodes {
-        name
-        image {
-          asset {
-            fluid(maxWidth: 500) {
-              ...GatsbySanityImageFluid
-            }
-          }
-        }
-        function
-        position
-        location
-        place
+        internship
       }
     }
   }

@@ -5,7 +5,7 @@ import ContentBlockWrapper from "./ContentBlockWrapper";
 // =========================
 
 export default function ContentBlock({ content, path, block }) {
-  if (block || block === 0) {
+  if (typeof block === "number") {
     const index = block;
     const e = content[block];
 

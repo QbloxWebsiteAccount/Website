@@ -3,9 +3,14 @@ import { SubMenuContext } from "components-react-lib";
 import { motion } from "framer-motion";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { useAboutNavItems, useProductNavItems } from "./subNavItems.js";
+import BarComp from "./Bar.js";
+import {
+  useAboutNavItems,
+  useNewsNavItems,
+  useProductNavItems,
+} from "./subNavItems.js";
 // =========================
 
 const Grid = styled(Link)`
@@ -29,28 +34,28 @@ const Svg = styled.img`
 `;
 
 export default function SubMenuBurger({ children, menu }) {
-  const { selected, setSelected, toggle, setNumberOfItems } = useContext(
-    SubMenuContext
-  );
+  const { selected, setSelected, toggle } = useContext(SubMenuContext);
 
   const products = useProductNavItems();
   const about = useAboutNavItems();
+  const news = useNewsNavItems();
+
   const subCondition =
-    menu === "products" ? products : menu === "about" ? about : null;
+    menu === "products"
+      ? products
+      : menu === "about"
+      ? about
+      : menu === "news"
+      ? news
+      : null;
 
   const arrayLength = subCondition.length;
-
-  useEffect(() => {
-    setNumberOfItems(arrayLength);
-  }, [setNumberOfItems, arrayLength]);
 
   const items = subCondition.map((e, index) => {
     const name = e?.name;
     const slug = name?.toLowerCase().replace(/\s/g, "");
     const image = e.image?.asset.fluid || e?.image;
     const svg = e?.svg;
-    const last = index === arrayLength - 1;
-
     const noImage = !svg && !image ? 1 : 0;
 
     return (
@@ -62,7 +67,12 @@ export default function SubMenuBurger({ children, menu }) {
           setSelected(null);
         }}
       >
-        <Grid to={`/${slug}`} last={last ? 1 : 0} noimage={noImage}>
+        <Grid
+          to={
+            name === "Advisory board" ? `/qbloxteam#advisoryBoard` : `/${slug}`
+          }
+          noimage={noImage}
+        >
           {image && <Image fluid={image} alt={name} />}
           {svg && <Svg src={svg} alt={name} />}
           <p> {name}</p>
@@ -75,14 +85,13 @@ export default function SubMenuBurger({ children, menu }) {
     <>
       <button
         onClick={(e) => {
-          selected === e.target.innerHTML
-            ? setSelected(null)
-            : setSelected(e.target.innerHTML);
+          selected === menu ? setSelected(null) : setSelected(menu);
         }}
       >
+        <BarComp menu={menu} arrayLength={arrayLength} />
         {children}
       </button>
-      {selected === children && (
+      {selected === menu && (
         <motion.div animate="mounted" initial="unMounted" variants={framerWrap}>
           {items}
         </motion.div>

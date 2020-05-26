@@ -6,11 +6,13 @@ import { Container } from "../../style/Mixins";
 // =========================
 
 const Wrapper = styled.div`
+  margin-top: ${({ theme: { spacing } }) => spacing[10]};
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
     position: relative;
     width: 100vw;
-    height: ${({ theme: { spacing } }) => `calc( 100vh - ${spacing[16]})`};
+    height: ${({ theme: { spacing } }) => `calc( 100vh - ${spacing[13]})`};
+    margin-top: 0;
   }
 `;
 
@@ -48,7 +50,8 @@ const Content = styled.div`
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
     align-items: center;
   }
 `;
