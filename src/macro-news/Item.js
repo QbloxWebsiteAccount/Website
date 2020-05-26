@@ -16,6 +16,12 @@ const Item = styled.div`
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.tablet}) {
+    grid-template-columns: 0.5fr 1fr;
+    grid-column-gap: ${({ theme: { spacing } }) => spacing[8]};
+  }
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopS}) {
     grid-template-columns: 0.4fr 1fr;
     grid-column-gap: ${({ theme: { spacing } }) => spacing[8]};
   }
@@ -31,6 +37,12 @@ const Image = styled(Img)`
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.tablet}) {
     margin-bottom: 0;
+    height: 150px;
+  }
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopS}) {
+    height: 180px;
   }
 `;
 
@@ -70,7 +82,9 @@ export default function ItemComp({ content }) {
     const subtitle = e?.subtitle;
     const image = e?.image?.asset.fluid;
     const date = e?.date;
-    const document = e?.document?.asset.url;
+    const link = e?.link;
+
+    console.log(e);
 
     return (
       <Item key={index}>
@@ -79,8 +93,8 @@ export default function ItemComp({ content }) {
           <Title>{title}</Title>
           <Subtitle>{subtitle}</Subtitle>
           <Flex>
-            <a href={`${document}?dl=`} target="_blank" rel="noreferrer">
-              <UnderlineButton>View vacancie</UnderlineButton>
+            <a href={link} target="_blank" rel="noreferrer">
+              <UnderlineButton>View article</UnderlineButton>
             </a>
             <div style={{ margin: `0 0.5em` }}>|</div>
             <Date>{date}</Date>

@@ -37,9 +37,7 @@ const Grid = styled.div`
   }
 `;
 
-const BlockWrapper = styled(BlockStyling)`
-  max-width: 400px;
-`;
+const BlockWrapper = styled(BlockStyling)``;
 
 export default function TextImageBlock({ content }) {
   const title = content.title && content.title;

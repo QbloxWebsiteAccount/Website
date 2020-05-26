@@ -20,7 +20,6 @@ const Title = styled.h3`
 
       @media screen and (min-width: ${({ theme: { breakPoint } }) =>
         breakPoint.desktopS}) {
-          margin-bottom:  ${({ theme: { spacing } }) => spacing[5]}; 
           max-width: initial;
           text-align: ${({ alignSwitch }) =>
             !alignSwitch ? "left" : "right"}; 
@@ -47,12 +46,18 @@ const BlockWrap = styled(BlockStyling)`
 
   p {
     ${({ theme: { fontSize } }) => fontSize.s}
+    text-align: start;
   }
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
     max-width: initial;
-    margin-bottom: 0;
+
+    margin-bottom: ${({ theme: { spacing } }) => spacing[11]};
+  }
+
+  @media screen and (min-width: 1300px) {
+    margin-bottom: ${({ theme: { spacing } }) => spacing[14]};
   }
 `;
 

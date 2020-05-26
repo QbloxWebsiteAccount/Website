@@ -26,6 +26,12 @@ const Text = styled(BlockStyling)`
   }
 `;
 
+const Text2 = styled(Text)`
+  p {
+    text-align: left;
+  }
+`;
+
 export default function TwoColumnTextBlock({ content }) {
   return (
     <Container>
@@ -33,9 +39,9 @@ export default function TwoColumnTextBlock({ content }) {
         <Text>
           <Block content={content._rawColumn1} />
         </Text>
-        <Text>
+        <Text2>
           <Block content={content._rawColumn2} />
-        </Text>
+        </Text2>
       </Wrapper>
     </Container>
   );

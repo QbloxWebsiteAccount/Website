@@ -50,10 +50,10 @@ export const useAboutNavItems = () => {
 export const useNewsNavItems = () => {
   const items = [
     {
-      name: "scientific articles",
+      name: "Scientific articles",
     },
     {
-      name: "news",
+      name: "News",
     },
   ];
 

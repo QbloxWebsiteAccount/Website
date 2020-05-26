@@ -4,20 +4,20 @@ import React from "react";
 import styled from "styled-components";
 import ContentBlock from "../global-components/contentBlock/ContentBlock";
 import Head from "../global-components/Layout/Head";
-import ItemComp from "../macro-news/Item";
+import Items from "../macro-affiliations/Items";
 // =========================
 
 const Wrapper = styled.div`
   padding-bottom: ${({ theme: { spacing } }) => spacing[6]};
 `;
 
-export default function News({ data, path }) {
+export default function Affiliations({ data, path }) {
   const keywords = data.sanityPages.SEO ? data.sanityPages.SEO.keywords : "";
   const description = data.sanityPages.SEO
     ? data.sanityPages.SEO.description
     : "";
 
-  const news = data.allSanityNews.nodes;
+  const content = data.allSanityAffiliates.nodes;
 
   return (
     <>
@@ -32,15 +32,25 @@ export default function News({ data, path }) {
           path={path}
           block={0}
         />
-        <ItemComp content={news} />
+        <ContentBlock
+          content={data.sanityPages.content}
+          path={path}
+          block={1}
+        />
+        <Items content={content} />
+        <ContentBlock
+          content={data.sanityPages.content}
+          path={path}
+          block={2}
+        />
       </Wrapper>
     </>
   );
 }
 
 export const query = graphql`
-  query NewsQuery {
-    sanityPages(page: { eq: "News" }) {
+  query AffiliationsQuery {
+    sanityPages(page: { eq: "Affiliations" }) {
       ...content
       SEO {
         keywords
@@ -48,22 +58,18 @@ export const query = graphql`
       }
       page
     }
-    allSanityNews(
-      filter: { type: { eq: "news" } }
-      sort: { order: DESC, fields: date }
-    ) {
+    allSanityAffiliates {
       nodes {
-        title
-        image {
+        name
+        logo {
           asset {
-            fluid(maxWidth: 500) {
-              ...GatsbySanityImageFluid
-            }
+            url
           }
         }
         subtitle
-        date(formatString: "DD MMMM YYYY")
-        link
+        _rawText
+        website
+        location
       }
     }
   }

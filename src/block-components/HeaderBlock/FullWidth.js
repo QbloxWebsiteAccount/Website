@@ -13,7 +13,6 @@ const Wrapper = styled.div`
 
 const Image = styled(Img)`
   height: 100%;
-  object-fit: cover;
   width: 100%;
 `;
 

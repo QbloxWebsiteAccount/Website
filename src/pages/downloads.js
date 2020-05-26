@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import ContentBlock from "../global-components/contentBlock/ContentBlock";
 import Head from "../global-components/Layout/Head";
+import Items from "../macro-downloads/Items";
 // =========================
 
 const Wrapper = styled.div`
@@ -16,6 +17,8 @@ export default function Downloads({ data, path }) {
     ? data.sanityPages.SEO.description
     : "";
 
+  const content = data.allSanityProducts.nodes;
+
   return (
     <>
       <Head
@@ -24,10 +27,11 @@ export default function Downloads({ data, path }) {
         keywords={keywords}
       />
       <Wrapper>
+        <Items content={content} />
         <ContentBlock
           content={data.sanityPages.content}
           path={path}
-          block={0}
+          block={1}
         />
       </Wrapper>
     </>
@@ -43,6 +47,26 @@ export const query = graphql`
         description
       }
       page
+    }
+    allSanityProducts {
+      nodes {
+        downloads {
+          fileName
+          document {
+            asset {
+              url
+            }
+          }
+        }
+        name
+        image {
+          asset {
+            fluid(maxWidth: 500) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+      }
     }
   }
 `;

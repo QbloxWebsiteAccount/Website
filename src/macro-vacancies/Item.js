@@ -16,6 +16,12 @@ const Item = styled.div`
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.tablet}) {
+    grid-template-columns: 0.5fr 1fr;
+    grid-column-gap: ${({ theme: { spacing } }) => spacing[8]};
+  }
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopS}) {
     grid-template-columns: 0.4fr 1fr;
     grid-column-gap: ${({ theme: { spacing } }) => spacing[8]};
   }
@@ -31,6 +37,12 @@ const Image = styled(Img)`
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.tablet}) {
     margin-bottom: 0;
+    height: 150px;
+  }
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopS}) {
+    height: 180px;
   }
 `;
 

@@ -6,7 +6,7 @@ export const Wrapper = styled(motion.div)`
     noPadding && index === 0
       ? spacing[10]
       : index === 0
-      ? spacing[14]
+      ? spacing[13]
       : spacing[8]};
 
   margin-bottom: ${({ theme: { spacing }, marginBottom, lastItem }) =>

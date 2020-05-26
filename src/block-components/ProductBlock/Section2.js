@@ -64,7 +64,7 @@ const SubSection = styled.div`
     max-width: initial;
 
     .image2 {
-      height: ${({ ratio }) => (ratio < 1 ? "300px" : "330px")};
+      height: ${({ ratio }) => (ratio < 1 ? "280px" : "330px")};
       width: 100%;
     }
 
