@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
 const Item = styled.div`
   display: grid;
-  margin-bottom: ${({ theme: { spacing } }) => spacing[10]};
+  margin-bottom: ${({ theme: { spacing } }) => spacing[12]};
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.tablet}) {
@@ -33,25 +33,38 @@ const InnerGrid = styled.div`
 
 const Image = styled(Img)`
   margin-bottom: ${({ theme: { spacing } }) => spacing[5]};
+  max-width: 400px;
+
+  img {
+    object-fit: contain !important;
+  }
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.tablet}) {
     margin-bottom: 0;
     height: 150px;
+    max-width: initial;
   }
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
-    height: 180px;
+    height: 190px;
   }
 `;
 
 const Title = styled.p`
   ${({ theme: { fontSize } }) => fontSize.xl}
 font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
+margin-bottom: ${({ theme: { spacing } }) => spacing[0]};
 `;
 
 const Subtitle = styled.p`
+  ${({ theme: { fontSize } }) => fontSize.xl}
+font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
+margin-bottom: ${({ theme: { spacing } }) => spacing[1]};
+`;
+
+const Text = styled.p`
   max-width: 80%;
 `;
 
@@ -80,18 +93,18 @@ export default function ItemComp({ content }) {
   const vacancies = content.map((e, index) => {
     const title = e?.title;
     const subtitle = e?.subtitle;
+    const text = e?.text;
     const image = e?.image?.asset.fluid;
     const date = e?.date;
     const link = e?.link;
 
-    console.log(e);
-
     return (
       <Item key={index}>
-        <Image fluid={image} alt={title} />
+        {image && <Image fluid={image} alt={title} />}
         <InnerGrid>
           <Title>{title}</Title>
           <Subtitle>{subtitle}</Subtitle>
+          <Text>{text}</Text>
           <Flex>
             <a href={link} target="_blank" rel="noreferrer">
               <UnderlineButton>View article</UnderlineButton>

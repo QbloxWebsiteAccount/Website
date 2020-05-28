@@ -86,7 +86,7 @@ export default function ItemComp({ content }) {
 
     return (
       <Item key={index}>
-        <Image fluid={image} alt={title} />
+        {image && <Image fluid={image} alt={title} />}
         <InnerGrid>
           <Title>{title}</Title>
           <Subtitle>{subtitle}</Subtitle>

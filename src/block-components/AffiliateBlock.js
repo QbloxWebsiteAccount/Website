@@ -1,5 +1,5 @@
 // Components==============
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import { Container } from "../style/Mixins";
@@ -15,12 +15,13 @@ const Wrapper = styled.div`
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopM}) {
-    display: flex;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: ${({ theme: { spacing } }) => spacing[10]};
   }
 
   img {
     margin: 0 auto ${({ theme: { spacing } }) => spacing[9]};
-    max-width: 250px;
+    max-width: 224px;
 
     @media screen and (min-width: ${({ theme: { breakPoint } }) =>
         breakPoint.tablet}) {
@@ -29,7 +30,7 @@ const Wrapper = styled.div`
 
     @media screen and (min-width: ${({ theme: { breakPoint } }) =>
         breakPoint.desktopM}) {
-      max-width: 180px;
+      max-width: 200px;
     }
   }
 `;
@@ -39,7 +40,14 @@ export default function AffiliateBlock({ content }) {
     const logo = e.logo && e.logo.asset.url;
     const name = e.name && e.name;
 
-    return <img key={index} src={logo} alt={name} />;
+    return (
+      <Link
+        key={index}
+        to={`/affiliations#${name?.toLowerCase().replace(/\s/g, "")}`}
+      >
+        <img src={logo} alt={name} />
+      </Link>
+    );
   });
 
   return (

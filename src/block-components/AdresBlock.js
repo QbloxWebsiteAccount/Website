@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h3`
   color: ${({ theme: { primary } }) => primary[3]};
-  margin-bottom: ${({ theme: { spacing } }) => spacing[6]};
+  margin-bottom: ${({ theme: { spacing } }) => spacing[2]};
   font-weight: ${({ theme: { fontWeight } }) => fontWeight.wouter};
 `;
 
@@ -60,12 +60,12 @@ export default function AdresBlock({ content }) {
   return (
     <Container>
       <Wrapper>
-        <Title>{title}</Title>
         <Grid>
           {content.image && <Img fluid={image} />}
           {content.adresInfo && (
             <div>
               <Info>
+                <Title>{title}</Title>
                 <p>{adresInfo.street}</p>
                 <p>{adresInfo.zipCity}</p>
                 <p>{adresInfo.land}</p>

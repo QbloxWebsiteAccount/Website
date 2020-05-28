@@ -48,17 +48,6 @@ const BlockWrap = styled(BlockStyling)`
     ${({ theme: { fontSize } }) => fontSize.s}
     text-align: start;
   }
-
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopS}) {
-    max-width: initial;
-
-    margin-bottom: ${({ theme: { spacing } }) => spacing[11]};
-  }
-
-  @media screen and (min-width: 1300px) {
-    margin-bottom: ${({ theme: { spacing } }) => spacing[14]};
-  }
 `;
 
 const ImageWrapper = styled.div`
@@ -74,8 +63,7 @@ const ImageWrapper = styled.div`
     margin: 0;
 
     .image1 {
-      height: ${({ ratio }) => (ratio < 1 ? "500px" : "450px")};
-      /* height: 500px; */
+      height: ${({ ratio }) => (ratio > 1 ? "450px" : "475px")};
     }
 
     img {
@@ -91,7 +79,7 @@ export default function S1({
   svg1,
   title,
 }) {
-  const imageAspectRatio = image1.aspectRatio;
+  const imageAspectRatio = image1?.aspectRatio;
 
   return (
     <>

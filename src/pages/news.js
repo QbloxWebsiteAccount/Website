@@ -54,6 +54,8 @@ export const query = graphql`
     ) {
       nodes {
         title
+        subtitle
+        text
         image {
           asset {
             fluid(maxWidth: 500) {
@@ -61,7 +63,6 @@ export const query = graphql`
             }
           }
         }
-        subtitle
         date(formatString: "DD MMMM YYYY")
         link
       }

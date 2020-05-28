@@ -57,14 +57,14 @@ export default function Item({ content }) {
   const breakpoint = useMediaQ("min", 768);
 
   const items = content.map((e, index) => {
-    const name = e.name;
-    const image = e.image.asset.fluid;
-    const aspectRatio = image.aspectRatio;
+    const name = e?.name;
+    const image = e?.image?.asset?.fluid;
+    const aspectRatio = image?.aspectRatio;
     const lastItem = content.length === index + 1;
 
     const downloads = e.downloads.map((e, index) => {
       const name = e.fileName;
-      const document = e?.document?.asset.url;
+      const document = e?.document?.asset?.url;
       const isEven = index % 2 === 0;
 
       return (
@@ -80,7 +80,9 @@ export default function Item({ content }) {
       <Grid key={index} lastItem={lastItem}>
         {breakpoint ? (
           <>
-            <Image fluid={image} alt={name} aspectRatio={aspectRatio} />
+            {image && (
+              <Image fluid={image} alt={name} aspectRatio={aspectRatio} />
+            )}
             <div>
               <h2>{name} downloads</h2>
               {downloads}

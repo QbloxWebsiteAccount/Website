@@ -7,8 +7,13 @@ import { Container } from "../../style/Mixins";
 
 const Wrapper = styled.div`
   position: relative;
-  width: 100vw;
-  height: ${({ theme: { spacing } }) => `calc( 100vh - ${spacing[10]})`};
+
+  height: 70vh;
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopS}) {
+    height: calc(400px + 4vw);
+  }
 `;
 
 const Image = styled(Img)`

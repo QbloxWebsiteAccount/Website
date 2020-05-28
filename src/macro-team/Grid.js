@@ -78,34 +78,37 @@ export default function Grid({ employees }) {
   const gridGap = noMobile ? 40 : 20;
   const height = bounds.width - gridGap;
   const items = employees.map((e, index) => {
-    const image = e.image?.asset?.fluid;
-    const svg = e.image?.asset?.url;
+    const image = e?.image?.asset?.fluid;
+    const svg = e?.image?.asset?.url;
+    const name = e?.name;
+    const team = e?.team;
+    const job = e?.job;
 
     return (
       <motion.div
         key={index}
-        id={e.name.split(" ")[0]}
+        id={name?.split(" ")[0]}
         whileHover={{ scale: 1.05 }}
       >
-        {!svg.includes(".svg") ? (
+        {!svg?.includes(".svg") && svg ? (
           <Image
             fluid={image}
-            alt={e.name}
-            height={e.team ? height * 2 + 400 : height}
-            team={e.team}
+            alt={name}
+            height={team ? height * 2 + 400 : height}
+            team={team}
           />
         ) : (
           <Link to="/vacancies">
             <Svg
-              height={e.team ? height * 2 : height}
+              height={team ? height * 2 : height}
               src={svg}
-              alt={e.name}
-              id={e.name.split(" ")[0]}
+              alt={name}
+              id={name?.split(" ")[0]}
             />
           </Link>
         )}
-        <Name>{e.name}</Name>
-        <Job>{e.job}</Job>
+        <Name>{name}</Name>
+        <Job>{job}</Job>
       </motion.div>
     );
   });

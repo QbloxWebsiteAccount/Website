@@ -10,6 +10,7 @@ import { BlockStyling } from "../../style/Mixins";
 const BlockWrap = styled(BlockStyling)`
   max-width: 600px;
   margin-bottom: ${({ theme: { spacing } }) => spacing[8]};
+  align-self: end;
 
   ul {
     margin-left: 0;
@@ -44,28 +45,22 @@ const BlockWrap = styled(BlockStyling)`
   }
 `;
 
-const Absolute = styled.div`
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopS}) {
-    position: absolute;
-    bottom: 0;
-    grid-column: ${({ alignSwitch }) => (alignSwitch ? "1/2" : 2)};
-    width: 100%;
-  }
-`;
-
 const SubSection = styled.div`
-  position: relative;
   width: 100%;
   max-width: 500px;
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
+    grid-column: ${({ alignSwitch }) => (alignSwitch ? "1/2" : 2)};
+    align-self: end;
     max-width: initial;
 
     .image2 {
-      height: ${({ ratio }) => (ratio < 1 ? "280px" : "330px")};
+      max-height: 300px;
+      max-width: 500px;
       width: 100%;
+
+      margin-left: ${({ alignSwitch }) => alignSwitch && "auto"};
     }
 
     img {
@@ -90,9 +85,8 @@ export default function S2({
   svg2,
   sellingPoints2,
   smallTextBlock,
+  setNeedsMoreSpace,
 }) {
-  const imageAspectRatio = image2.aspectRatio;
-
   const ref = useRef();
 
   useEffect(() => {
@@ -112,14 +106,12 @@ export default function S2({
       <BlockWrap alignSwitch={alignSwitch} ref={ref}>
         <Block content={sellingPoints2} />
       </BlockWrap>
-      <Absolute alignSwitch={alignSwitch}>
-        <SubSection alignSwitch={alignSwitch} ratio={imageAspectRatio}>
-          {image2 && (
-            <ImageSvg image={image2} svg={svg2} alt="alt" className="image2" />
-          )}
-          <SmallBlock alignSwitch={alignSwitch}>{smallTextBlock}</SmallBlock>
-        </SubSection>
-      </Absolute>
+      <SubSection alignSwitch={alignSwitch}>
+        {image2 && (
+          <ImageSvg image={image2} svg={svg2} alt="alt" className="image2" />
+        )}
+        <SmallBlock alignSwitch={alignSwitch}>{smallTextBlock}</SmallBlock>
+      </SubSection>
     </>
   );
 }

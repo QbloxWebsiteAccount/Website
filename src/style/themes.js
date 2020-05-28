@@ -154,7 +154,7 @@ export const Variables = {
     font-size: 40px;
     
     @media screen and (min-width: 768px) {
-     font-size: 65px; 
+     font-size: 55px; 
     };
     `,
     bigTitle: `

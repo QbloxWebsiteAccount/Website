@@ -12,6 +12,11 @@ const Wrapper = styled.div`
   max-width: 750px;
 `;
 
+const Pointer = styled.div`
+  position: absolute;
+  top: -100px;
+`;
+
 const Logo = styled.img`
   max-width: 250px;
   margin: 0 auto;
@@ -49,7 +54,8 @@ export default function Items({ content }) {
     const location = e?.location;
 
     return (
-      <div key={index}>
+      <div key={index} style={{ position: "relative" }}>
+        <Pointer id={name?.toLowerCase().replace(/\s/g, "")} />
         <Logo src={image} alt={name} />
         <Name>{name}</Name>
         <Subtitle>{subtitle}</Subtitle>

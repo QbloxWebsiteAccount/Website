@@ -8,7 +8,7 @@ import { Container } from "../../style/Mixins";
 const Wrapper = styled.div`
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
-    height: ${({ theme: { spacing } }) => `calc( 100vh - ${spacing[10]})`};
+    height: calc(400px + 4vw);
   }
   padding-top: ${({ theme: { spacing } }) => spacing[10]};
 `;
@@ -19,7 +19,6 @@ const Image = styled(Img)`
   img {
     object-fit: contain !important;
   }
-  max-width: 400px;
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopS}) {
