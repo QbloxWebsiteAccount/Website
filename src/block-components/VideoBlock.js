@@ -9,7 +9,8 @@ import { Container } from "../style/Mixins";
 const Wrapper = styled.div`
   position: relative;
   width: 100vw;
-  height: ${({ theme: { spacing } }) => `calc( 100vh - ${spacing[10]})`};
+  height: ${({ theme: { spacing } }) => `calc( 100vh - ${spacing[10]}) `};
+  overflow-anchor: none;
 `;
 
 const Video = styled.video`
