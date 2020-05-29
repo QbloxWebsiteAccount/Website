@@ -102,9 +102,11 @@ export default function ItemComp({ content }) {
       <Item key={index}>
         {image && <Image fluid={image} alt={title} />}
         <InnerGrid>
-          <Title>{title}</Title>
-          <Subtitle>{subtitle}</Subtitle>
-          <Text>{text}</Text>
+          <div>
+            <Title>{title}</Title>
+            <Subtitle>{subtitle}</Subtitle>
+            <Text>{text}</Text>
+          </div>
           <Flex>
             <a href={link} target="_blank" rel="noreferrer">
               <UnderlineButton>View article</UnderlineButton>

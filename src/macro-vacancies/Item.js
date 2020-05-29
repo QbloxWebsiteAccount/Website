@@ -49,9 +49,16 @@ const Image = styled(Img)`
 const Title = styled.p`
   ${({ theme: { fontSize } }) => fontSize.xl}
 font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
+margin-bottom: ${({ theme: { spacing } }) => spacing[0]};
 `;
 
 const Subtitle = styled.p`
+  ${({ theme: { fontSize } }) => fontSize.xl}
+font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
+margin-bottom: ${({ theme: { spacing } }) => spacing[1]};
+`;
+
+const Text = styled.p`
   max-width: 80%;
 `;
 
@@ -80,6 +87,7 @@ export default function ItemComp({ content }) {
   const vacancies = content.map((e, index) => {
     const title = e?.title;
     const subtitle = e?.subtitle;
+    const text = e?.text;
     const image = e?.image?.asset.fluid;
     const date = e?.date;
     const document = e?.document?.asset.url;
@@ -88,8 +96,11 @@ export default function ItemComp({ content }) {
       <Item key={index}>
         {image && <Image fluid={image} alt={title} />}
         <InnerGrid>
-          <Title>{title}</Title>
-          <Subtitle>{subtitle}</Subtitle>
+          <div>
+            <Title>{title}</Title>
+            <Subtitle>{subtitle}</Subtitle>
+            <Text>{text}</Text>
+          </div>
           <Flex>
             <a href={`${document}?dl=`} target="_blank" rel="noreferrer">
               <UnderlineButton>View vacancie</UnderlineButton>

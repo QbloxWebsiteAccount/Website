@@ -3,88 +3,99 @@ import { graphql } from "gatsby";
 import { useMediaQ } from "hooks-lib";
 import React from "react";
 import styled from "styled-components";
-import { Container } from "../style/Mixins";
+import ScrollIndicator from "../micro-components/ScrollIndicator";
 // =========================
 
 const Wrapper = styled.div`
   position: relative;
-  width: 100vw;
-  height: ${({ theme: { spacing } }) => `calc( 100vh - ${spacing[10]}) `};
-  overflow-anchor: none;
+  height: ${({ theme: { spacing } }) => `calc( 100vh - ${spacing[14]}) `};
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopM}) {
+    height: initial;
+    margin-top: 0;
+  }
+
+  .scrollIndicator {
+    bottom: ${({ theme: { spacing } }) => spacing[12]};
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+
+    @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+        breakPoint.mobile}) {
+      bottom: ${({ theme: { spacing } }) => spacing[10]};
+    }
+
+    @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+        breakPoint.tablet}) {
+      display: none;
+    }
+  }
 `;
 
 const Video = styled.video`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  object-fit: cover;
+  max-height: 100vh;
   width: 100%;
-  z-index: -2;
+  object-fit: cover;
+  margin-top: ${({ theme: { spacing } }) => spacing[12]};
+
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopM}) {
+    margin-top: 0;
+  }
 `;
 
-const Shade = styled.div`
+const Gradient = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: ${({ theme: { gray } }) => gray[14].replace("1)", "0.7)")};
+  height: ${({ theme: { spacing } }) => spacing[12]};
+  width: 100vw;
   z-index: -1;
 `;
 
-const Title = styled.h1`
-  color: white;
-  padding-top: ${({ theme: { spacing } }) => spacing[2]};
-  font-weight: ${({ theme: { fontWeight } }) => fontWeight.wouter};
-  ${({ theme: { fontSize } }) => fontSize.bigTitle}
-  text-transform: uppercase;
-
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopS}) {
-    padding-top: ${({ theme: { spacing } }) => spacing[6]};
-  }
+const GradientTop = styled(Gradient)`
+  top: -${({ theme: { spacing } }) => spacing[12]};
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(250, 250, 250, 1) 100%
+  );
 `;
 
-const SubTitle = styled.h3`
-  color: white;
-  font-size: 45px;
-  padding-top: ${({ theme: { spacing } }) => spacing[1]};
-
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopL}) {
-    font-size: 3vw;
-  }
+const GradientBottom = styled(Gradient)`
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(250, 250, 250, 1) 100%
+  );
 `;
 
 export default function VideoBlock({ content }) {
   const videoQuery = useMediaQ("min", 700);
 
-  const video = content.video && content.video.asset.url;
-  const title = content.title && content.title;
-  const subtitle = content.subtitle && content.subtitle;
+  const video = content?.video?.asset?.url;
+  const smallVideo = content?.smallVideo?.asset?.url;
+  const placeholder = content?.placeholder?.asset?.url;
 
   return (
     <Wrapper>
+      <GradientTop />
       <Video
         muted
         autoPlay
         loop
         playsInline
         crossOrigin="anonymous"
-        poster={content.placeholder ? content.placeholder.asset.url : ""}
+        poster={placeholder}
       >
         {videoQuery ? (
           <source src={video} type="video/mp4" />
         ) : (
-          <source src={video} type="video/mp4" />
+          <source src={smallVideo} type="video/mp4" />
         )}
       </Video>
-      <Shade />
-      <Container>
-        <Title>{title}</Title>
-        <SubTitle>{subtitle}</SubTitle>
-      </Container>
+      <GradientBottom />
+      <ScrollIndicator />
     </Wrapper>
   );
 }
@@ -93,9 +104,12 @@ export const query = graphql`
   fragment video on SanityVideoBlock {
     marginBottom
     animation
-    title
-    subtitle
     video {
+      asset {
+        url
+      }
+    }
+    smallVideo {
       asset {
         url
       }
