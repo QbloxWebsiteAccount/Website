@@ -6,7 +6,15 @@
   "author": "roland.branten@gmail.com",
   "license": "MIT",
   "scripts": {
-    "start": "gatsby develop"
+    "build": "gatsby build && gatsby serve",
+    "link": "npm link components-react-lib hooks-lib",
+    "start": "gatsby develop",
+    "serve": "gatsby serve -H 192.168.2.146 ",
+    "develop": "gatsby develop -H 0.0.0.0 ",
+    "local": "gatsby develop -H 192.168.56.1 -p 8001 ",
+    "mobile": "gatsby develop -H 192.168.43.132 -p 8001 ",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
+    "clean": "rm -rf .cache"
   },
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.7",
