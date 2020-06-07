@@ -8,7 +8,7 @@
   "scripts": {
     "build": "gatsby build && gatsby serve",
     "link": "npm link components-react-lib hooks-lib",
-    "start": "gatsby develop",
+    "start": "npm run link && npm run develop",
     "serve": "gatsby serve -H 192.168.2.146 ",
     "develop": "gatsby develop -H 0.0.0.0 ",
     "local": "gatsby develop -H 192.168.56.1 -p 8001 ",
