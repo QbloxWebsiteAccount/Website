@@ -94,43 +94,31 @@ export const Variables = {
     s: `
     font-size: 15px;
     
-    @media screen and (min-width: 768px) {
-     font-size: 16px; 
-    };
     `,
     m: `
     font-size: 16px;
     
-    @media screen and (min-width: 768px) {
-     font-size: 17px; 
-    };
     `,
     l: `
     font-size: 17px;
     
-    @media screen and (min-width: 768px) {
-     font-size: 18px; 
-    };
     `,
     xl: `
     font-size: 20px;
     
-    @media screen and (min-width: 768px) {
-     font-size: 21px; 
-    };
     `,
     h4: `
     font-size: 25px;
     
     @media screen and (min-width: 768px) {
-     font-size: 28px; 
+     font-size: 26px; 
     };
     `,
     h3: `
     font-size: 29px;
     
     @media screen and (min-width: 768px) {
-     font-size: 33px; 
+     font-size: 31px; 
     };
     `,
     h2: `
@@ -138,7 +126,7 @@ export const Variables = {
     line-height: 1.3;
     
     @media screen and (min-width: 768px) {
-     font-size: 41px; 
+     font-size: 35px; 
     };
     `,
     h1: `
@@ -146,7 +134,7 @@ export const Variables = {
     line-height: 1.3;
     
     @media screen and (min-width: 768px) {
-     font-size: 50px; 
+     font-size: 45px; 
     };
     `,
     h0: `
@@ -154,14 +142,14 @@ export const Variables = {
     font-size: 40px;
     
     @media screen and (min-width: 768px) {
-     font-size: 55px; 
+     font-size: 50px; 
     };
     `,
     bigTitle: `
   font-size: 70px;
 
     @media screen and (min-width: 768px) {
-    font-size: 80px; 
+    font-size: 77px; 
     };
 
     

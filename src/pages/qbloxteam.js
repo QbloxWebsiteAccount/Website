@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import ContentBlock from "../global-components/contentBlock/ContentBlock";
 import Head from "../global-components/Layout/Head";
+import { ToggleContext } from "../global-components/Layout/Layout";
 import Advisory from "../macro-team/Advisory";
 import Grid from "../macro-team/Grid";
 import { Container } from "../style/Mixins";
@@ -25,7 +26,8 @@ export default function QbloxTeam({ data, path }) {
     : "";
 
   const employees = data.allSanityEmployees.nodes;
-  const advisoryBoard = data.allSanityAdvisoryBoard.nodes;
+  const advisoryBoardContent = data.allSanityAdvisoryBoard.nodes;
+  const { advisoryBoard } = React.useContext(ToggleContext);
 
   return (
     <>
@@ -49,16 +51,19 @@ export default function QbloxTeam({ data, path }) {
           <Grid employees={employees} />
         </Container>
 
-        <ContentBlock
-          content={data.sanityPages.content}
-          path={path}
-          block={2}
-        />
-        <Container style={{ position: "relative" }}>
-          <Pointer id="advisoryBoard" />
-          <Advisory content={advisoryBoard} />
-        </Container>
-
+        {advisoryBoard && (
+          <>
+            <ContentBlock
+              content={data.sanityPages.content}
+              path={path}
+              block={2}
+            />
+            <Container style={{ position: "relative" }}>
+              <Pointer id="advisoryBoard" />
+              <Advisory content={advisoryBoardContent} />
+            </Container>
+          </>
+        )}
         <ContentBlock
           content={data.sanityPages.content}
           path={path}

@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import { useMediaQ } from "hooks-lib";
 import React from "react";
 import styled from "styled-components";
+import { ToggleContext } from "../Layout/Layout";
 // =========================
 
 const Wrapper = styled.div`
@@ -17,7 +18,7 @@ const Wrapper = styled.div`
       breakPoint.desktopM}) {
         flex-direction: row;
         max-width: 1100px;
-        justify-content: space-between;
+        justify-content: center;
         margin: ${({ theme: { spacing } }) => spacing[0]} auto 0;
     }
 
@@ -30,7 +31,7 @@ const Wrapper = styled.div`
 
       @media screen and (min-width: ${({ theme: { breakPoint } }) =>
         breakPoint.desktopM}) {
-         margin: 0; 
+         margin: 0 3em; 
       }
   }
 
@@ -44,21 +45,26 @@ const Flex = styled.div`
 
 export default function BottomLinks() {
   const breakpoint = useMediaQ("min", 1200);
+
+  const { termsOfUse, termsOfSale, privacyPolicy } = React.useContext(
+    ToggleContext
+  );
+
   return (
     <Wrapper>
       {breakpoint ? (
         <>
           <p>© 2020 QBLOX all rights reserved</p>
-          <Link to="/termsofuse">Terms of use</Link>
-          <Link to="/termsofsale">Terms of sale</Link>
-          <Link to="/privacypolicy">Privacy policy</Link>
+          {termsOfUse && <Link to="/termsofuse">Terms of use</Link>}
+          {termsOfSale && <Link to="/termsofsale">Terms of sale</Link>}
+          {privacyPolicy && <Link to="/privacypolicy">Privacy policy</Link>}
         </>
       ) : (
         <>
-          <Link to="/privacypolicy">Privacy policy</Link>
+          {privacyPolicy && <Link to="/privacypolicy">Privacy policy</Link>}
           <Flex>
-            <Link to="/termsofuse">Terms of use</Link>
-            <Link to="/termsofsale">Terms of sale</Link>
+            {termsOfUse && <Link to="/termsofuse">Terms of use</Link>}
+            {termsOfSale && <Link to="/termsofsale">Terms of sale</Link>}
           </Flex>{" "}
           <p>© 2020 QBLOX all rights reserved</p>
         </>

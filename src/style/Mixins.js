@@ -67,6 +67,5 @@ export const BlockStyling = styled.div`
 
   a {
     cursor: pointer;
-    text-decoration: underline;
   }
 `;

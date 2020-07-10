@@ -1,6 +1,6 @@
-import { DropdownButton } from "components-react-lib";
 import { Link } from "gatsby";
 import React from "react";
+import { DropdownButton } from "./dropdown";
 import SubMenu from "./SubMenu";
 import SubMenuBurger from "./SubMenuBurger";
 

@@ -1,9 +1,10 @@
 // Components==============
-import instagram from "assets/instagram.svg";
-import linkedIn from "assets/linkedIn.svg";
-import twitter from "assets/twitter.svg";
+import instagramSvg from "assets/instagram.svg";
+import linkedInSvg from "assets/linkedIn.svg";
+import twitterSvg from "assets/twitter.svg";
 import React from "react";
 import styled from "styled-components";
+import { ToggleContext } from "../Layout/Layout";
 import ItemWrapper from "./ItemWrapper";
 // =========================
 
@@ -27,13 +28,18 @@ const Contact = styled.div`
 
 const Flex = styled.div`
   display: flex;
-  width: 120px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-top: ${({ theme: { spacing } }) => spacing[1]};
 
   img {
     height: 25px;
+    margin: 0 0.7em;
+
+    @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+        breakPoint.desktopM}) {
+      margin: 0 0.8em 0 0;
+    }
   }
 `;
 
@@ -48,6 +54,8 @@ export default function ContactItems({ data }) {
     zoom: data.sanityQBlox.zoom,
   };
 
+  const { twitter, instagram } = React.useContext(ToggleContext);
+
   return (
     <Wrapper>
       <Contact>
@@ -61,14 +69,22 @@ export default function ContactItems({ data }) {
         </a>
         <Flex>
           <a href={content.linkedIn} target="_blank" rel="noopener noreferrer">
-            <img src={linkedIn} alt="linkedIn" />
+            <img src={linkedInSvg} alt="linkedIn" />
           </a>
-          <a href={content.twitter} target="_blank" rel="noopener noreferrer">
-            <img src={twitter} alt="twitter" />
-          </a>
-          <a href={content.instagram} target="_blank" rel="noopener noreferrer">
-            <img src={instagram} alt="instagram" />
-          </a>
+          {twitter && (
+            <a href={content.twitter} target="_blank" rel="noopener noreferrer">
+              <img src={twitterSvg} alt="twitter" />
+            </a>
+          )}
+          {instagram && (
+            <a
+              href={content.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={instagramSvg} alt="instagram" />
+            </a>
+          )}
         </Flex>
       </Contact>
     </Wrapper>

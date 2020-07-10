@@ -1,5 +1,7 @@
 import download from "assets/downloads-icon.svg";
 import { graphql, useStaticQuery } from "gatsby";
+import React from "react";
+import { ToggleContext } from "../Layout/Layout";
 
 export const useProductNavItems = () => {
   const data = useStaticQuery(graphql`
@@ -29,20 +31,35 @@ export const useProductNavItems = () => {
 };
 
 export const useAboutNavItems = () => {
-  const items = [
-    {
-      name: "Qblox Team",
-    },
-    {
-      name: "Advisory board",
-    },
-    {
-      name: "Vacancies",
-    },
-    {
-      name: "Affiliations",
-    },
-  ];
+  const { advisoryBoard } = React.useContext(ToggleContext);
+
+  const items = advisoryBoard
+    ? [
+        {
+          name: "Qblox Team",
+        },
+        {
+          name: "Advisory board",
+        },
+        {
+          name: "Vacancies",
+        },
+        {
+          name: "Affiliations",
+        },
+      ]
+    : [
+        {
+          name: "Qblox Team",
+        },
+
+        {
+          name: "Vacancies",
+        },
+        {
+          name: "Affiliations",
+        },
+      ];
 
   return items;
 };
@@ -50,10 +67,11 @@ export const useAboutNavItems = () => {
 export const useNewsNavItems = () => {
   const items = [
     {
-      name: "Scientific articles",
+      title: "News / press",
+      name: "News",
     },
     {
-      name: "News",
+      name: "Scientific articles",
     },
   ];
 

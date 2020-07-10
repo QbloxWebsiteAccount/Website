@@ -1,8 +1,8 @@
 // Components==============
-import { UnderlineButton } from "components-react-lib";
 import Img from "gatsby-image";
 import React from "react";
 import styled from "styled-components";
+import { UnderlineButton } from "../micro-components/UnderlineButton";
 import { Container } from "../style/Mixins";
 // =========================
 
@@ -13,6 +13,7 @@ const Wrapper = styled.div`
 const Item = styled.div`
   display: grid;
   margin-bottom: ${({ theme: { spacing } }) => spacing[12]};
+  align-items: center;
 
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.tablet}) {
@@ -97,6 +98,8 @@ export default function ItemComp({ content }) {
     const image = e?.image?.asset.fluid;
     const date = e?.date;
     const link = e?.link;
+
+    console.log(text);
 
     return (
       <Item key={index}>

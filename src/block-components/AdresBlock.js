@@ -39,6 +39,7 @@ const Route = styled(BlockStyling)`
 
   p {
     margin-bottom: 5px;
+    text-align: left;
   }
 `;
 

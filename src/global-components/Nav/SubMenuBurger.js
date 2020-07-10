@@ -1,11 +1,11 @@
 // Components==============
-import { SubMenuContext } from "components-react-lib";
 import { motion } from "framer-motion";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
 import React, { useContext } from "react";
 import styled from "styled-components";
 import BarComp from "./Bar.js";
+import { SubMenuContext } from "./sideBurger/index.js";
 import {
   useAboutNavItems,
   useNewsNavItems,
@@ -53,6 +53,7 @@ export default function SubMenuBurger({ children, menu }) {
 
   const items = subCondition.map((e, index) => {
     const name = e?.name;
+    const title = e?.title;
     const slug = name?.toLowerCase().replace(/\s/g, "");
     const image = e.image?.asset.fluid || e?.image;
     const svg = e?.svg;
@@ -75,7 +76,7 @@ export default function SubMenuBurger({ children, menu }) {
         >
           {image && <Image fluid={image} alt={name} />}
           {svg && <Svg src={svg} alt={name} />}
-          <p> {name}</p>
+          <p> {title ? title : name}</p>
         </Grid>
       </motion.div>
     );

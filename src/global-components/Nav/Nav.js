@@ -1,8 +1,9 @@
 // Components==============
-import { Navigation, SideBurger } from "components-react-lib";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React from "react";
+import { Navigation } from "./navigation";
 import navItems from "./navItems";
+import { SideBurger } from "./sideBurger";
 // =========================
 
 export default function Nav() {

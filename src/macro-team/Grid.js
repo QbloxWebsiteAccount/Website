@@ -44,22 +44,6 @@ const Image = styled(Img)`
   }
 `;
 
-const Svg = styled.img`
-  width: 100%;
-  object-fit: cover;
-  height: ${({ height }) => ` ${height / 2}px`};
-
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.tablet}) {
-    height: ${({ height }) => ` ${height / 3}px`};
-  }
-
-  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-      breakPoint.desktopS}) {
-    height: ${({ height }) => ` ${height / 4}px`};
-  }
-`;
-
 const Name = styled.p`
   font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
   ${({ theme: { fontSize } }) => fontSize.xl}
@@ -79,10 +63,11 @@ export default function Grid({ employees }) {
   const height = bounds.width - gridGap;
   const items = employees.map((e, index) => {
     const image = e?.image?.asset?.fluid;
-    const svg = e?.image?.asset?.url;
     const name = e?.name;
     const team = e?.team;
     const job = e?.job;
+
+    console.log(job);
 
     return (
       <motion.div
@@ -90,7 +75,7 @@ export default function Grid({ employees }) {
         id={name?.split(" ")[0]}
         whileHover={{ scale: 1.05 }}
       >
-        {!svg?.includes(".svg") && svg ? (
+        {!name.includes("team") ? (
           <Image
             fluid={image}
             alt={name}
@@ -99,11 +84,11 @@ export default function Grid({ employees }) {
           />
         ) : (
           <Link to="/vacancies">
-            <Svg
-              height={team ? height * 2 : height}
-              src={svg}
+            <Image
+              fluid={image}
               alt={name}
-              id={name?.split(" ")[0]}
+              height={team ? height * 2 + 400 : height}
+              team={team}
             />
           </Link>
         )}

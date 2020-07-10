@@ -1,7 +1,7 @@
 {
   "files.exclude": {
     "src/html.js": true,
-    // ".env": true,
+    ".env": true,
     ".cache": true,
     "icon": true,
     "node_modules": true,
@@ -15,7 +15,7 @@
     "package-lock.json": true,
     // "package.json": true,
     "page.js": true,
-    "jsconfig.json": true,
+    // "jsconfig.json": true,
     "netlify.toml": true,
     "root.js": true
   },

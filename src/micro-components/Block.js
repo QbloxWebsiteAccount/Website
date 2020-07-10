@@ -1,15 +1,25 @@
 // Components==============
 import BlockContent from "@sanity/block-content-to-react";
+import { Link } from "gatsby";
 import React from "react";
 // =========================
 
 export default function Block({ content }) {
   const serializers = {
-    types: {
-      code: (props) => (
-        <pre data-language={props.node.language}>
-          <code>{props.node.code}</code>
-        </pre>
+    // MARKS
+
+    marks: {
+      externalLink: ({ children, mark: { link, newTab } }) => (
+        <a
+          href={link}
+          target={newTab ? "_blank" : ""}
+          rel={newTab ? "noopener noreferrer" : ""}
+        >
+          {children}
+        </a>
+      ),
+      internalLink: ({ children, mark: { link = "/" } }) => (
+        <Link to={link}>{children}</Link>
       ),
     },
   };

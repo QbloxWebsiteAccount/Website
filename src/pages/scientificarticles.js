@@ -62,6 +62,7 @@ export const query = graphql`
           }
         }
         subtitle
+        text
         date(formatString: "DD MMMM YYYY")
         link
       }

@@ -1,6 +1,5 @@
 // Components==============
 import { graphql } from "gatsby";
-import { useMediaQ } from "hooks-lib";
 import React from "react";
 import styled from "styled-components";
 import ScrollIndicator from "../micro-components/ScrollIndicator";
@@ -35,7 +34,6 @@ const Wrapper = styled.div`
 `;
 
 const Video = styled.video`
-  max-height: 100vh;
   width: 100%;
   object-fit: cover;
   margin-top: ${({ theme: { spacing } }) => spacing[12]};
@@ -43,6 +41,9 @@ const Video = styled.video`
   @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopM}) {
     margin-top: 0;
+    height: 100%;
+    min-height: 80vh;
+    max-height: 100vh;
   }
 `;
 
@@ -71,10 +72,7 @@ const GradientBottom = styled(Gradient)`
 `;
 
 export default function VideoBlock({ content }) {
-  const videoQuery = useMediaQ("min", 700);
-
   const video = content?.video?.asset?.url;
-  const smallVideo = content?.smallVideo?.asset?.url;
   const placeholder = content?.placeholder?.asset?.url;
 
   return (
@@ -88,11 +86,7 @@ export default function VideoBlock({ content }) {
         crossOrigin="anonymous"
         poster={placeholder}
       >
-        {videoQuery ? (
-          <source src={video} type="video/mp4" />
-        ) : (
-          <source src={smallVideo} type="video/mp4" />
-        )}
+        <source src={video} type="video/mp4" />
       </Video>
       <GradientBottom />
       <ScrollIndicator />
@@ -105,11 +99,6 @@ export const query = graphql`
     marginBottom
     animation
     video {
-      asset {
-        url
-      }
-    }
-    smallVideo {
       asset {
         url
       }
