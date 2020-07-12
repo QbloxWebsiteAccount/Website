@@ -21,7 +21,11 @@ const GlobalStyles = createGlobalStyle`
    html {
       font-family: Montserrat;
       background-color: ${({ theme: { gray } }) => gray[1]};
-      zoom: 0.95;
+
+      @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+        breakPoint.tablet}) {
+         zoom: 0.95;
+       }
 
       input, select, textarea, label{
          font-family: Montserrat;
