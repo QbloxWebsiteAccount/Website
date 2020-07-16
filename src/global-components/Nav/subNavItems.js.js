@@ -67,7 +67,7 @@ export const useAboutNavItems = () => {
 export const useNewsNavItems = () => {
   const items = [
     {
-      title: "News / press",
+      title: "Press",
       name: "News",
     },
     {
