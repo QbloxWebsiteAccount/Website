@@ -20,6 +20,7 @@ const Wrapper = styled.div`
 `;
 
 const ContactItem = styled.div`
+  width: 100%;
   max-width: 375px;
   background: ${({ theme: { gray } }) => gray[0]};
   box-shadow: ${({ theme: { shadow } }) => shadow.m};
@@ -56,16 +57,13 @@ const Mail = styled.a`
 `;
 
 const Text = styled.p`
-  margin-bottom: ${({ theme: { spacing } }) => spacing[4]};
+  margin-bottom: 0;
 `;
 
 const Download = styled(Link)`
   margin-bottom: ${({ theme: { spacing } }) => spacing[3]};
 `;
 
-const Flex = styled.div`
-  display: flex;
-`;
 
 export default function ContactBlock({ content }) {
   const items = content.items.map((e, index) => {
@@ -74,8 +72,6 @@ export default function ContactBlock({ content }) {
     const text = e.text && e.text;
     const linkText = e.link.text && e.link.text;
     const linkSlug = e.link.slug && e.link.slug;
-    const zoom = e.zoom && e.zoom;
-    const skype = e.skype && e.skype;
 
     return (
       <ContactItem key={index}>
@@ -87,16 +83,6 @@ export default function ContactBlock({ content }) {
         <Download to={linkSlug}>
           <UnderlineButton>{linkText}</UnderlineButton>
         </Download>
-        <Flex>
-          <strong>Zoom Meetin</strong>
-          <div style={{ width: 2 }} />
-          <p> | {zoom}</p>
-        </Flex>
-        <Flex>
-          <strong>Skype Channel</strong>
-          <div style={{ width: 2 }} />
-          <p> | {skype}</p>
-        </Flex>
       </ContactItem>
     );
   });
@@ -120,8 +106,6 @@ export const query = graphql`
         text
         slug
       }
-      zoom
-      skype
     }
   }
 `;

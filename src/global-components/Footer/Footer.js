@@ -75,7 +75,6 @@ export default function Footer() {
         phone
         skype
         twitter
-        zoom
       }
     }
   `);

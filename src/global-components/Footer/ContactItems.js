@@ -49,9 +49,7 @@ export default function ContactItems({ data }) {
     instagram: data.sanityQBlox.instagram,
     linkedIn: data.sanityQBlox.linkedIn,
     phone: data.sanityQBlox.phone,
-    skype: data.sanityQBlox.skype,
     twitter: data.sanityQBlox.twitter,
-    zoom: data.sanityQBlox.zoom,
   };
 
   const { twitter, instagram } = React.useContext(ToggleContext);
@@ -61,12 +59,6 @@ export default function ContactItems({ data }) {
       <Contact>
         <strong>Contact</strong>
         <a href={`mailto:${content.email}`}>{content.email}</a>
-        <a href={content.skype} target="_blank" rel="noopener noreferrer">
-          Skype
-        </a>
-        <a href={content.zoom} target="_blank" rel="noopener noreferrer">
-          Zoom
-        </a>
         <Flex>
           <a href={content.linkedIn} target="_blank" rel="noopener noreferrer">
             <img src={linkedInSvg} alt="linkedIn" />
