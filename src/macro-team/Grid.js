@@ -67,8 +67,6 @@ export default function Grid({ employees }) {
     const team = e?.team;
     const job = e?.job;
 
-    console.log(job);
-
     return (
       <motion.div
         key={index}

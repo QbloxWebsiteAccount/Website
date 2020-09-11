@@ -104,7 +104,7 @@ export default function ItemComp({ content }) {
           </div>
           <Flex>
             <a href={`${document}?dl=`} target="_blank" rel="noreferrer">
-              <UnderlineButton>View vacancie</UnderlineButton>
+              <UnderlineButton>View vacancy</UnderlineButton>
             </a>
             <div style={{ margin: `0 0.5em` }}>|</div>
             <Date>{date}</Date>

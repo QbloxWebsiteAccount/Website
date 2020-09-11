@@ -99,8 +99,6 @@ export default function ItemComp({ content }) {
     const date = e?.date;
     const link = e?.link;
 
-    console.log(text);
-
     return (
       <Item key={index}>
         {image && <Image fluid={image} alt={title} />}
