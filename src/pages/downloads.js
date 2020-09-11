@@ -48,7 +48,7 @@ export const query = graphql`
       }
       page
     }
-    allSanityProducts {
+    allSanityProducts(sort: {order: ASC, fields: name}) {
       nodes {
         downloads {
           fileName
