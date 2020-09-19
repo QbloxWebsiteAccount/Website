@@ -73,7 +73,6 @@ export default function Footer() {
         instagram
         linkedIn
         phone
-        skype
         twitter
       }
     }
