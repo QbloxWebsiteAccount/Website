@@ -1,5 +1,5 @@
-require("dotenv").config();
-const path = require("path");
+require('dotenv').config();
+const path = require('path');
 
 module.exports = {
   siteMetadata: {
@@ -16,6 +16,20 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-netlify`,
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GOOGLE_ANALYTICS,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-hubspot',
+      options: {
+        trackingCode: process.env.HUBSPOT,
+        respectDNT: true,
+        productionOnly: true,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `assets`,
@@ -23,22 +37,22 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-sanity",
+      resolve: 'gatsby-source-sanity',
       options: {
-        projectId: "ostxzp7d",
-        dataset: "production",
+        projectId: 'ostxzp7d',
+        dataset: 'production',
         token: process.env.SANITY_TOKEN,
-        graphqlTag: "default",
+        graphqlTag: 'default',
         watchMode: true,
         overlayDrafts: true,
       },
     },
     {
-      resolve: "gatsby-plugin-root-import",
+      resolve: 'gatsby-plugin-root-import',
       options: {
-        assets: path.join(__dirname, "src/assets"),
-        hooks: path.join(__dirname, "src/hooks"),
-        mixins: path.join(__dirname, "src/style/Mixins"),
+        assets: path.join(__dirname, 'src/assets'),
+        hooks: path.join(__dirname, 'src/hooks'),
+        mixins: path.join(__dirname, 'src/style/Mixins'),
       },
     },
     {
@@ -55,7 +69,7 @@ module.exports = {
     },
     `gatsby-plugin-remove-serviceworker`,
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
           include: /\.inline\.svg$/,
