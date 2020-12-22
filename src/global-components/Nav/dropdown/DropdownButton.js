@@ -32,7 +32,7 @@ const InvisibleLinker = styled.div`
   height: 30px;
   position: absolute;
   left: 50%;
-  bottom: -15%;
+  bottom: -10%;
   pointer-events: ${({ isToggled }) => !isToggled && "none"};
   transform: translateX(-50%);
   cursor: initial;
