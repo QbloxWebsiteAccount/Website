@@ -55,6 +55,7 @@ export const useAboutNavItems = () => {
 
         {
           name: "Vacancies",
+          link: 'https://qblox.jobs.personio.de/'
         },
         {
           name: "Affiliations",

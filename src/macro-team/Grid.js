@@ -81,14 +81,14 @@ export default function Grid({ employees }) {
             team={team}
           />
         ) : (
-          <Link to="/vacancies">
+          <a href="https://qblox.jobs.personio.de/" target="_blank" rel="noopener noreferrer">
             <Image
               fluid={image}
               alt={name}
               height={team ? height * 2 + 400 : height}
               team={team}
             />
-          </Link>
+          </a>
         )}
         <Name>{name}</Name>
         <Job>{job}</Job>

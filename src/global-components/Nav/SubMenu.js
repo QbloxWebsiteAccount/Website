@@ -67,8 +67,21 @@ export default function SubMenu({ menu }) {
       <motion.div key={index} whileHover={{ scale: 1.05 }} onClick={toggle}>
         <Flex
           to={
-            name === "Advisory board" ? "/qbloxteam#advisoryBoard" : `/${slug}`
+            name === 'Advisory board'
+              ? `/qbloxteam#advisoryBoard`
+              : e?.link
+              ? e?.link
+              : `/${slug}`
           }
+          onClick={
+            e?.link
+              ? (event) => {
+                  event.preventDefault();
+                  window.open(this.makeHref('https://qblox.jobs.personio.de/'));
+                }
+              : undefined
+          }
+          target="_blank"
         >
           {image && <Image fluid={image} alt={name} />}
           {svg && <Svg src={svg} alt={name} />}
