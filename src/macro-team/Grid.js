@@ -1,6 +1,5 @@
 // Components==============
 import { motion } from "framer-motion";
-import { Link } from "gatsby";
 import Img from "gatsby-image";
 import { useMeasure, useMediaQ } from "hooks-lib";
 import React from "react";

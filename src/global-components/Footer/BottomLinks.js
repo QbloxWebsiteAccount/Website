@@ -1,9 +1,9 @@
 // Components==============
-import { Link } from "gatsby";
-import { useMediaQ } from "hooks-lib";
-import React from "react";
-import styled from "styled-components";
-import { ToggleContext } from "../Layout/Layout";
+import { Link } from 'gatsby';
+import { useMediaQ } from 'hooks-lib';
+import React from 'react';
+import styled from 'styled-components';
+import { ToggleContext } from '../Layout/Layout';
 // =========================
 
 const Wrapper = styled.div`
@@ -14,13 +14,13 @@ const Wrapper = styled.div`
   margin-top: ${({ theme: { spacing } }) => spacing[5]};
   padding-bottom: ${({ theme: { spacing } }) => spacing[6]};
 
-    @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+  @media screen and (min-width: ${({ theme: { breakPoint } }) =>
       breakPoint.desktopM}) {
-        flex-direction: row;
-        max-width: 1100px;
-        justify-content: center;
-        margin: ${({ theme: { spacing } }) => spacing[0]} auto 0;
-    }
+    flex-direction: row;
+    max-width: 1100px;
+    justify-content: center;
+    margin: ${({ theme: { spacing } }) => spacing[0]} auto 0;
+  }
 
   p,
   a {
@@ -29,12 +29,11 @@ const Wrapper = styled.div`
     font-weight: ${({ theme: { fontWeight } }) => fontWeight.semiBold};
     ${({ theme: { fontSize } }) => fontSize.xs}
 
-      @media screen and (min-width: ${({ theme: { breakPoint } }) =>
-        breakPoint.desktopM}) {
-         margin: 0 3em; 
-      }
+    @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+      breakPoint.desktopM}) {
+      margin: 0 3em;
+    }
   }
-
 `;
 
 const Flex = styled.div`
@@ -44,17 +43,21 @@ const Flex = styled.div`
 `;
 
 export default function BottomLinks() {
-  const breakpoint = useMediaQ("min", 1200);
+  const breakpoint = useMediaQ('min', 1200);
 
   const { termsOfUse, termsOfSale, privacyPolicy } = React.useContext(
     ToggleContext
   );
 
+  const today = new Date();
+
+  const copyRight = `© 2018 - ${today.getFullYear()} QBLOX BV all rights reserved`;
+
   return (
     <Wrapper>
       {breakpoint ? (
         <>
-          <p>© 2020 QBLOX all rights reserved</p>
+          <p>{copyRight}</p>
           {termsOfUse && <Link to="/termsofuse">Terms of use</Link>}
           {termsOfSale && <Link to="/termsofsale">Terms of sale</Link>}
           {privacyPolicy && <Link to="/privacypolicy">Privacy policy</Link>}
@@ -65,8 +68,8 @@ export default function BottomLinks() {
           <Flex>
             {termsOfUse && <Link to="/termsofuse">Terms of use</Link>}
             {termsOfSale && <Link to="/termsofsale">Terms of sale</Link>}
-          </Flex>{" "}
-          <p>© 2020 QBLOX all rights reserved</p>
+          </Flex>{' '}
+          <p>{copyRight}</p>
         </>
       )}
     </Wrapper>
