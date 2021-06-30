@@ -10,7 +10,15 @@ export default function FooterItems({ items }) {
     const footerItems = e.footerItems.map((e, index) => {
       return (
         <div key={index}>
-          {e.slug ? <Link to={e.slug}>{e.text}</Link> : <p>{e.text}</p>}
+          {e.slug.includes('http') ? (
+            <a href={e.slug} target="_blank" rel="noopener noreferrer">
+              {e.text}
+            </a>
+          ) : e.slug ? (
+            <Link to={e.slug}>{e.text}</Link>
+          ) : (
+            <p>{e.text}</p>
+          )}
         </div>
       );
     });
