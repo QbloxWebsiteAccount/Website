@@ -6,7 +6,7 @@ import { ToggleContext } from "../Layout/Layout";
 export const useProductNavItems = () => {
   const data = useStaticQuery(graphql`
     query menuQuery {
-      allSanitySeries {
+      allSanitySeries(sort: {fields: order}) {
         nodes {
           name
           image {

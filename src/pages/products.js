@@ -71,7 +71,7 @@ export default function Products({ data }) {
 
 export const query = graphql`
   query ProductsQuery {
-    allSanitySeries {
+    allSanitySeries(sort: {fields: order}) {
       nodes {
         name
         image {
