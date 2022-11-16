@@ -1,5 +1,15 @@
 import React, { useEffect } from "react";
-import { Container } from "../style/Mixins";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  iframe {
+    @media screen and (min-width: ${({ theme: { breakPoint } }) =>
+        breakPoint.tablet}) {
+      /* Fix to compensate for global zoom */
+      zoom: 1.075;
+    }
+  }
+`;
 
 export default function HubspotContactForm() {
   const region = "na1";
@@ -23,5 +33,5 @@ export default function HubspotContactForm() {
     });
   }, []);
 
-  return <div id="hubspotForm" />;
+  return <Wrapper id="hubspotForm" />;
 }
