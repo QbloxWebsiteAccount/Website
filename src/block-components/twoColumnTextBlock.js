@@ -16,17 +16,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Text = styled(BlockStyling)`
-  p {
-    ${({ theme: { fontSize } }) => fontSize.s}
-  }
-
-  strong {
-    ${({ theme: { fontSize } }) => fontSize.xl}
-  }
-`;
-
-const Text2 = styled(Text)`
+const RightBlock = styled(BlockStyling)`
   p {
     text-align: left;
   }
@@ -36,12 +26,12 @@ export default function TwoColumnTextBlock({ content }) {
   return (
     <Container>
       <Wrapper>
-        <Text>
+        <BlockStyling>
           <Block content={content._rawColumn1} />
-        </Text>
-        <Text2>
+        </BlockStyling>
+        <RightBlock>
           <Block content={content._rawColumn2} />
-        </Text2>
+        </RightBlock>
       </Wrapper>
     </Container>
   );

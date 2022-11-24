@@ -25,6 +25,13 @@ export const Container = styled.div`
 // BlockStyling
 
 export const BlockStyling = styled.div`
+  p,
+  a,
+  strong,
+  span {
+    ${({ theme: { fontSize } }) => fontSize.s}
+  }
+
   p {
     margin-bottom: ${({ theme: { spacing } }) => spacing[3]};
     line-height: 1.7;
@@ -34,7 +41,16 @@ export const BlockStyling = styled.div`
   strong {
     line-height: 1.6;
     font-weight: ${({ theme: { fontWeight } }) => fontWeight.heavy};
-    ${({ theme: { fontSize } }) => fontSize.l}
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    ${({ theme: { fontSize } }) => fontSize.s}
+    margin-bottom: ${({ theme: { spacing } }) => spacing[1]};
   }
 
   blockquote::before {
@@ -66,6 +82,7 @@ export const BlockStyling = styled.div`
   }
 
   a {
+    color: ${({ theme: { primary } }) => primary[3]};
     cursor: pointer;
   }
 `;
