@@ -1,7 +1,6 @@
 // Components==============
 import { motion } from "framer-motion";
 import { useHover } from "hooks-lib";
-import React from "react";
 import styled from "styled-components";
 import useIsDropdown from "./useIsDropdown";
 // =========================
@@ -33,7 +32,17 @@ export default function Item({ children, hoverEffect, itemSpacing }) {
       ref={ref}
       isDropdown={isDropdown}
       itemSpacing={itemSpacing}
-      onClick={() => {
+      onClick={(e) => {
+        const className = e.target.className;
+        const blackList = [
+          "DropdownMenu__Wrapper",
+          "SubMenu__Wrapper",
+          "Mixins__Container",
+          "DropdownButton__Wrapper",
+          "hoverPointer",
+          "DropdownMenu__MenuWrapper",
+        ];
+        if (blackList.find((cl) => className.includes(cl))) return;
         setHover(false);
       }}
     >
