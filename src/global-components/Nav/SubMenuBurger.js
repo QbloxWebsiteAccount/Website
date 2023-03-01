@@ -60,8 +60,9 @@ export default function SubMenuBurger({ children, menu }) {
     const title = e?.title;
     const slug = name?.toLowerCase().replace(/\s/g, "");
     const image = e.image?.asset.fluid || e?.image;
-    const svg = e?.svg || e?.rawImage;
-    const noImage = !svg && !image ? 1 : 0;
+    const svg = e?.svg;
+    const rawImage = e?.rawImage;
+    const noImage = !svg && !image && !rawImage ? 1 : 0;
 
     return (
       <motion.div
@@ -93,6 +94,7 @@ export default function SubMenuBurger({ children, menu }) {
         >
           {image && <Image fluid={image} alt={name} />}
           {svg && <Svg src={svg} alt={name} />}
+          {rawImage && <img src={rawImage} alt={name} />}
           <p> {title ? title : name}</p>
         </Grid>
       </motion.div>
