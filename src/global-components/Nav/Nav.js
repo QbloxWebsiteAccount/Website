@@ -31,7 +31,7 @@ export default function Nav() {
     <Navigation
       logo={<Logo width="45px" />}
       items={navItems}
-      breakPoint={825}
+      breakPoint={975}
       hamburger={<SideBurger items={navItems} />}
       itemSpacing={9}
       sticky

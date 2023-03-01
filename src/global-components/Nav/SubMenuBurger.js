@@ -1,21 +1,22 @@
 // Components==============
-import { motion } from 'framer-motion';
-import { Link } from 'gatsby';
-import Img from 'gatsby-image';
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import BarComp from './Bar.js';
-import { SubMenuContext } from './sideBurger/index.js';
+import { motion } from "framer-motion";
+import { Link } from "gatsby";
+import Img from "gatsby-image";
+import React, { useContext } from "react";
+import styled from "styled-components";
+import BarComp from "./Bar.js";
+import { SubMenuContext } from "./sideBurger/index.js";
 import {
   useAboutNavItems,
+  useApplicationNavItems,
   useNewsNavItems,
   useProductNavItems,
-} from './subNavItems.js';
+} from "./subNavItems.js";
 // =========================
 
 const Grid = styled(Link)`
   display: grid;
-  grid-template-columns: ${({ noimage }) => (noimage ? '1fr' : `60px 1fr`)};
+  grid-template-columns: ${({ noimage }) => (noimage ? "1fr" : `60px 1fr`)};
   grid-column-gap: ${({ theme: { spacing } }) => spacing[3]};
   align-items: center;
   height: 37.5px;
@@ -39,14 +40,17 @@ export default function SubMenuBurger({ children, menu }) {
   const products = useProductNavItems();
   const about = useAboutNavItems();
   const news = useNewsNavItems();
+  const application = useApplicationNavItems();
 
   const subCondition =
-    menu === 'products'
+    menu === "products"
       ? products
-      : menu === 'about'
+      : menu === "about"
       ? about
-      : menu === 'news'
+      : menu === "news"
       ? news
+      : menu === "application"
+      ? application
       : null;
 
   const arrayLength = subCondition.length;
@@ -54,9 +58,9 @@ export default function SubMenuBurger({ children, menu }) {
   const items = subCondition.map((e, index) => {
     const name = e?.name;
     const title = e?.title;
-    const slug = name?.toLowerCase().replace(/\s/g, '');
+    const slug = name?.toLowerCase().replace(/\s/g, "");
     const image = e.image?.asset.fluid || e?.image;
-    const svg = e?.svg;
+    const svg = e?.svg || e?.rawImage;
     const noImage = !svg && !image ? 1 : 0;
 
     return (
@@ -70,7 +74,7 @@ export default function SubMenuBurger({ children, menu }) {
       >
         <Grid
           to={
-            name === 'Advisory board'
+            name === "Advisory board"
               ? `/qbloxteam#advisoryBoard`
               : e?.link
               ? e?.link
@@ -80,7 +84,7 @@ export default function SubMenuBurger({ children, menu }) {
             e?.link
               ? (event) => {
                   event.preventDefault();
-                  window.open(this.makeHref('https://qblox.jobs.personio.de/'));
+                  window.open(this.makeHref("https://qblox.jobs.personio.de/"));
                 }
               : undefined
           }

@@ -1,4 +1,7 @@
 import download from "assets/downloads-icon.svg";
+import center from "assets/QB_NV-CENTERS_ICON.png";
+import spin from "assets/QB_SPIN-QUBITS_ICON.png";
+import superconducting from "assets/QB_SUPERCONDUCTING_ICON.png";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { ToggleContext } from "../Layout/Layout";
@@ -6,7 +9,7 @@ import { ToggleContext } from "../Layout/Layout";
 export const useProductNavItems = () => {
   const data = useStaticQuery(graphql`
     query menuQuery {
-      allSanitySeries(sort: {fields: order}) {
+      allSanitySeries(sort: { fields: order }) {
         nodes {
           name
           image {
@@ -55,12 +58,31 @@ export const useAboutNavItems = () => {
 
         {
           name: "Vacancies",
-          link: 'https://qblox.jobs.personio.de/'
+          link: "https://qblox.jobs.personio.de/",
         },
         {
           name: "Affiliations",
         },
       ];
+
+  return items;
+};
+
+export const useApplicationNavItems = () => {
+  const items = [
+    {
+      name: "Superconducting",
+      rawImage: superconducting,
+    },
+    {
+      name: "Spin Qubits",
+      rawImage: spin,
+    },
+    {
+      name: "NV-Centers",
+      rawImage: center,
+    },
+  ];
 
   return items;
 };

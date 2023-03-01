@@ -8,6 +8,7 @@ import { Container } from "../../style/Mixins";
 import { DropdownContext } from "./dropdown";
 import {
   useAboutNavItems,
+  useApplicationNavItems,
   useNewsNavItems,
   useProductNavItems,
 } from "./subNavItems.js";
@@ -21,6 +22,11 @@ const Wrapper = styled.div`
     arrLength === 3 ? "700px" : arrLength > 3 ? "900px" : "400px"};
   margin: 0 auto;
   padding: ${({ theme: { spacing } }) => spacing[5]} 0;
+`;
+
+const RawImage = styled.img`
+  width: 100px;
+  margin-bottom: ${({ theme: { spacing } }) => spacing[1]};
 `;
 
 const Image = styled(Img)`
@@ -44,6 +50,7 @@ export default function SubMenu({ menu }) {
   const products = useProductNavItems();
   const about = useAboutNavItems();
   const news = useNewsNavItems();
+  const applications = useApplicationNavItems();
 
   const subCondition =
     menu === "products"
@@ -52,6 +59,8 @@ export default function SubMenu({ menu }) {
       ? about
       : menu === "news"
       ? news
+      : menu === "applications"
+      ? applications
       : null;
 
   const arrLength = subCondition.length;
@@ -60,14 +69,15 @@ export default function SubMenu({ menu }) {
     const name = e?.name;
     const title = e?.title;
     const slug = name?.toLowerCase().replace(/\s/g, "");
-    const image = e.image?.asset.fluid || e?.image;
+    const image = e.image?.asset?.fluid || e?.image;
+    const rawImage = e?.rawImage;
     const svg = e?.svg;
 
     return (
       <motion.div key={index} whileHover={{ scale: 1.05 }} onClick={toggle}>
         <Flex
           to={
-            name === 'Advisory board'
+            name === "Advisory board"
               ? `/qbloxteam#advisoryBoard`
               : e?.link
               ? e?.link
@@ -77,7 +87,7 @@ export default function SubMenu({ menu }) {
             e?.link
               ? (event) => {
                   event.preventDefault();
-                  window.open(this.makeHref('https://qblox.jobs.personio.de/'));
+                  window.open(this.makeHref("https://qblox.jobs.personio.de/"));
                 }
               : undefined
           }
@@ -85,6 +95,7 @@ export default function SubMenu({ menu }) {
         >
           {image && <Image fluid={image} alt={name} />}
           {svg && <Svg src={svg} alt={name} />}
+          {rawImage && <RawImage src={rawImage} alt={name} />}
           <p> {title ? title : name}</p>
         </Flex>
       </motion.div>

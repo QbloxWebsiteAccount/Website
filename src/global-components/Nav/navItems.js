@@ -26,6 +26,22 @@ const navItems = [
   {
     content: (
       <DropdownButton
+        button={<div className="hoverPointer">Applications</div>}
+        menu={<SubMenu menu="applications" />}
+        menuPosition="90%"
+        menuWidth="100%"
+        menuIsFullWidth
+        hover
+      />
+    ),
+    hamburgerContent: (
+      <SubMenuBurger menu="application">Application</SubMenuBurger>
+    ),
+    link: "noLink",
+  },
+  {
+    content: (
+      <DropdownButton
         button={<div className="hoverPointer">News</div>}
         menu={<SubMenu menu="news" />}
         menuPosition="90%"
