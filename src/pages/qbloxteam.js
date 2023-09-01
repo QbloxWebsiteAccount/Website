@@ -89,7 +89,7 @@ export const query = graphql`
       }
       page
     }
-    allSanityEmployees {
+    allSanityEmployees(sort: { fields: order, order: ASC }) {
       nodes {
         name
         job

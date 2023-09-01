@@ -4,10 +4,9 @@ import Img from "gatsby-image";
 import { useMeasure, useMediaQ } from "hooks-lib";
 import React from "react";
 import styled from "styled-components";
-import { gridLayout } from "./gridLayout";
 // =========================
 
-const Wrapper = styled(gridLayout)`
+const Wrapper = styled.div`
   margin-bottom: ${({ theme: { spacing } }) => spacing[14]};
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -77,11 +76,7 @@ export default function Advisory({ content }) {
     const image = e.image?.asset?.fluid;
 
     return (
-      <motion.div
-        key={index}
-        id={e.name.split(" ")[0]}
-        whileHover={{ scale: 1.05 }}
-      >
+      <motion.div key={index} whileHover={{ scale: 1.05 }}>
         {image && (
           <Image
             fluid={image}
