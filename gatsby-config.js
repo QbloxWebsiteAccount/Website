@@ -6,7 +6,7 @@ module.exports = {
     title: `Qblox`,
     description: `We build control hardware for quantum computers. Quantum computers will revolutionize the way we compute by embedding the laws of quantum mechanics in their fundamental building blocks (qubits). To get from the current proof-of-principle prototype quantum computers to earth-shattering computation power, many scientific and engineering challenges have to be solved. Our company has the mission to build the control hardware stacks that can manage the upcoming generations of quantum processors. `,
     author: `Roland Branten`,
-    siteUrl: `https://qblox.com/`,
+    siteUrl: `https://qblox.netlify.app/`,
   },
   plugins: [
     `gatsby-plugin-sitemap`,
@@ -31,6 +31,12 @@ module.exports = {
           // Avoids sending pageview hits from custom paths
           exclude: [],
         },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{ userAgent: '*', disallow: ['/'] }],
       },
     },
     {
